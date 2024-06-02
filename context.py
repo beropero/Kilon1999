@@ -1,5 +1,5 @@
 
-from pyminitouchRW import MNTDevice
+from pyminitouchModify import MNTDevice
 import json
 import os
 import subprocess

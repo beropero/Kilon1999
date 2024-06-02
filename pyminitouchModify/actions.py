@@ -1,10 +1,10 @@
 import time
 from contextlib import contextmanager
 
-from pyminitouchRW.logger import logger
-from pyminitouchRW.connection import MNTConnection, MNTServer, safe_connection
-from pyminitouchRW import config
-from pyminitouchRW.utils import restart_adb
+from pyminitouchModify.logger import logger
+from pyminitouchModify.connection import MNTConnection, MNTServer, safe_connection
+from pyminitouchModify import config
+from pyminitouchModify.utils import restart_adb
 
 
 class CommandBuilder(object):

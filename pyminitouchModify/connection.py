@@ -5,9 +5,9 @@ import os
 import random
 from contextlib import contextmanager
 
-from pyminitouchRW.logger import logger
-from pyminitouchRW import config
-from pyminitouchRW.utils import (
+from pyminitouchModify.logger import logger
+from pyminitouchModify import config
+from pyminitouchModify.utils import (
     str2byte,
     download_file,
     is_port_using,

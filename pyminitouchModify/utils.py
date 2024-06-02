@@ -3,8 +3,8 @@ import tempfile
 import socket
 import subprocess
 
-from pyminitouchRW import config
-from pyminitouchRW.logger import logger
+from pyminitouchModify import config
+from pyminitouchModify.logger import logger
 
 
 def str2byte(content):
