@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'd:\workplace\PyProject\Kilon1999\gui\ui\homeself.ui'
+# Form implementation generated from reading ui file 'e:\workplace\PythonProject\Kilon1999\gui\ui\homeframe.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -11,34 +11,14 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Frame(QtWidgets.QFrame):
-    def __init__(self, parent=None):
-        super().__init__(parent=parent)
-        self.setObjectName("self")
-        self.resize(400, 300)
-        self.toolButton = QtWidgets.QToolButton(self)
-        self.toolButton.setGeometry(QtCore.QRect(130, 120, 37, 18))
-        self.toolButton.setObjectName("toolButton")
-        self.PasswordLineEdit = PasswordLineEdit(self)
-        self.PasswordLineEdit.setGeometry(QtCore.QRect(160, 170, 158, 33))
-        self.PasswordLineEdit.setObjectName("PasswordLineEdit")
-        self.IconInfoBadge = IconInfoBadge(self)
-        self.IconInfoBadge.setGeometry(QtCore.QRect(130, 90, 16, 16))
-        self.IconInfoBadge.setObjectName("IconInfoBadge")
-        self.DisplayLabel = DisplayLabel(self)
-        self.DisplayLabel.setGeometry(QtCore.QRect(130, 50, 392, 91))
-        self.DisplayLabel.setObjectName("DisplayLabel")
-        self.pushButton = QtWidgets.QPushButton(self)
-        self.pushButton.setGeometry(QtCore.QRect(120, 230, 75, 23))
-        self.pushButton.setObjectName("pushButton")
+class Ui_HomeFrame(object):
+    def setupUi(self, HomeFrame):
+        HomeFrame.setObjectName("HomeFrame")
+        HomeFrame.resize(869, 540)
 
-        self.retranslateUi()
-        QtCore.QMetaObject.connectSlotsByName(self)
+        self.retranslateUi(HomeFrame)
+        QtCore.QMetaObject.connectSlotsByName(HomeFrame)
 
-    def retranslateUi(self):
+    def retranslateUi(self, HomeFrame):
         _translate = QtCore.QCoreApplication.translate
-        self.setWindowTitle(_translate("self", "self"))
-        self.toolButton.setText(_translate("self", "..."))
-        self.DisplayLabel.setText(_translate("self", "Display label"))
-        self.pushButton.setText(_translate("self", "PushButton"))
-from qfluentwidgets import DisplayLabel, IconInfoBadge, PasswordLineEdit
+        HomeFrame.setWindowTitle(_translate("HomeFrame", "Frame"))
