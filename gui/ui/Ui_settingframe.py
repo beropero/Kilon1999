@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'e:\workplace\PythonProject\Kilon1999\gui\ui\settingframe.ui'
+# Form implementation generated from reading ui file 'd:\workplace\PyProject\Kilon1999\gui\ui\settingframe.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -28,11 +28,11 @@ class Ui_SettingFrame(object):
         self.AdbLabel = BodyLabel(SettingFrame)
         self.AdbLabel.setObjectName("AdbLabel")
         self.horizontalLayout_4.addWidget(self.AdbLabel)
-        self.EditableComboBox_4 = EditableComboBox(SettingFrame)
-        self.EditableComboBox_4.setMinimumSize(QtCore.QSize(250, 33))
-        self.EditableComboBox_4.setMaximumSize(QtCore.QSize(300, 33))
-        self.EditableComboBox_4.setObjectName("EditableComboBox_4")
-        self.horizontalLayout_4.addWidget(self.EditableComboBox_4)
+        self.LineEdit = LineEdit(SettingFrame)
+        self.LineEdit.setMinimumSize(QtCore.QSize(250, 33))
+        self.LineEdit.setMaximumSize(QtCore.QSize(300, 33))
+        self.LineEdit.setObjectName("LineEdit")
+        self.horizontalLayout_4.addWidget(self.LineEdit)
         self.AdbSelect = PushButton(SettingFrame)
         self.AdbSelect.setObjectName("AdbSelect")
         self.horizontalLayout_4.addWidget(self.AdbSelect)
@@ -104,5 +104,7 @@ class Ui_SettingFrame(object):
         self.AdbSelect.setText(_translate("SettingFrame", "选择"))
         self.ConnectLabel.setText(_translate("SettingFrame", "连接地址"))
         self.BodyLabel_3.setText(_translate("SettingFrame", "触控模式"))
+        self.ComboBox.setText(_translate("SettingFrame", "minitouch"))
         self.BodyLabel_2.setText(_translate("SettingFrame", "连接配置"))
-from qfluentwidgets import BodyLabel, ComboBox, EditableComboBox, PushButton
+        self.ComboBox_2.setText(_translate("SettingFrame", "mumu 模拟器"))
+from qfluentwidgets import BodyLabel, ComboBox, EditableComboBox, LineEdit, PushButton
