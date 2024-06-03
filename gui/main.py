@@ -190,6 +190,7 @@ class Window(FramelessWindow):
 
     def initWindow(self):
         self.resize(800, 500)
+        self.setMinimumSize(800, 500)
         self.setWindowIcon(QIcon('gui/resource/logo.png'))
         self.setWindowTitle('  Kilon1999')
         self.titleBar.setAttribute(Qt.WA_StyledBackground)
