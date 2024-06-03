@@ -1,8 +1,6 @@
 import cv2
 import numpy as np
-import context
-import adb
-import consts
+from core import context, adb, consts
 
 # 图片模板寻址
 def whereTemplate(ctx: context.Context,template_path):

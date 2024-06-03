@@ -1,4 +1,3 @@
-
 from pyminitouchModify import MNTDevice
 import json
 import os

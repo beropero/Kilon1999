@@ -1,5 +1,4 @@
-import context
-import controller
+from core import context, controller
 
 if __name__ == '__main__':
 

@@ -1,5 +1,4 @@
-import minitouch 
-import context
+from core import minitouch, context
 
 ## 自动重现
 def autoRecurrence(ctx: context.Context):    

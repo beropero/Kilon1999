@@ -1,6 +1,4 @@
-import context 
-import consts
-import utils
+from core import context, consts, utils
 import time
 
 def tap(template):
