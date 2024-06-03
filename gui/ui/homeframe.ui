@@ -115,7 +115,7 @@
         </size>
        </property>
        <property name="text">
-        <string>任务领取</string>
+        <string>奖励领取</string>
        </property>
       </widget>
      </item>

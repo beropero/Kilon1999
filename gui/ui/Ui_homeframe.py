@@ -136,7 +136,7 @@ class Ui_HomeFrame(object):
         HomeFrame.setWindowTitle(_translate("HomeFrame", "Frame"))
         self.CheckBox_4.setText(_translate("HomeFrame", "自动重现"))
         self.CheckBox_2.setText(_translate("HomeFrame", "荒原收取"))
-        self.CheckBox.setText(_translate("HomeFrame", "任务领取"))
+        self.CheckBox.setText(_translate("HomeFrame", "奖励领取"))
         self.CheckBox_7.setText(_translate("HomeFrame", "意志解析"))
         self.BodyLabel_3.setText(_translate("HomeFrame", "次数"))
         self.CheckBox_5.setText(_translate("HomeFrame", "尘埃运动"))
