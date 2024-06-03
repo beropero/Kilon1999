@@ -29,8 +29,8 @@ class AvatarWidget(NavigationWidget):
 
     def __init__(self, parent=None):
         super().__init__(isSelectable=False, parent=parent)
-        self.avatar = QImage('gui/resource/shoko.png').scaled(
-            24, 24, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+        # self.avatar = QImage('gui/resource/shoko.png').scaled(
+        #     24, 24, Qt.KeepAspectRatio, Qt.SmoothTransformation)
 
     def paintEvent(self, e):
         painter = QPainter(self)
@@ -103,10 +103,10 @@ class Window(FramelessWindow):
         self.stackWidget = QStackedWidget(self)
 
         # create sub interface
-        self.searchInterface = Widget('Search Interface', self)
-        self.musicInterface = Widget('Music Interface', self)
-        self.videoInterface = Widget('Video Interface', self)
-        self.folderInterface = Widget('Folder Interface', self)
+        # self.searchInterface = Widget('Search Interface', self)
+        self.homeInterface = Widget('Home Interface', self)
+        # self.videoInterface = Widget('Video Interface', self)
+        # self.folderInterface = Widget('Folder Interface', self)
         self.settingInterface = Widget('Setting Interface', self)
 
         # initialize layout
@@ -131,14 +131,14 @@ class Window(FramelessWindow):
         # enable acrylic effect
         # self.navigationInterface.setAcrylicEnabled(True)
 
-        self.addSubInterface(self.searchInterface, FIF.SEARCH, 'Search')
-        self.addSubInterface(self.musicInterface, FIF.MUSIC, 'Music library')
-        self.addSubInterface(self.videoInterface, FIF.VIDEO, 'Video library')
+        # self.addSubInterface(self.searchInterface, FIF.SEARCH, 'Search')
+        
+        # self.addSubInterface(self.videoInterface, FIF.VIDEO, 'Video library')
 
-        self.navigationInterface.addSeparator()
+        # self.navigationInterface.addSeparator()
 
         # add navigation items to scroll area
-        self.addSubInterface(self.folderInterface, FIF.FOLDER, 'Folder library', NavigationItemPosition.SCROLL)
+        # self.addSubInterface(self.folderInterface, FIF.FOLDER, 'Folder library', NavigationItemPosition.SCROLL)
         # for i in range(1, 21):
         #     self.navigationInterface.addItem(
         #         f'folder{i}',
@@ -149,17 +149,19 @@ class Window(FramelessWindow):
         #     )
 
         # add custom widget to bottom
-        self.navigationInterface.addWidget(
-            routeKey='avatar',
-            widget=AvatarWidget(),
-            onClick=self.showMessageBox,
-            position=NavigationItemPosition.BOTTOM
-        )
+        # self.navigationInterface.addWidget(
+        #     routeKey='avatar',
+        #     widget=AvatarWidget(),
+        #     onClick=self.showMessageBox,
+        #     position=NavigationItemPosition.BOTTOM
+        # )
 
         self.addSubInterface(self.settingInterface, FIF.SETTING, 'Settings', NavigationItemPosition.BOTTOM)
+        
+        self.addSubInterface(self.homeInterface, FIF.HOME, 'Home')
 
         #!IMPORTANT: don't forget to set the default route key
-        qrouter.setDefaultRouteKey(self.stackWidget, self.musicInterface.objectName())
+        qrouter.setDefaultRouteKey(self.stackWidget, self.homeInterface.objectName())
 
         # set the maximum width
         # self.navigationInterface.setExpandWidth(300)
@@ -204,17 +206,17 @@ class Window(FramelessWindow):
         self.navigationInterface.setCurrentItem(widget.objectName())
         qrouter.push(self.stackWidget, widget.objectName())
 
-    def showMessageBox(self):
-        w = MessageBox(
-            '支持作者🥰',
-            '个人开发不易，如果这个项目帮助到了您，可以考虑请作者喝一瓶快乐水🥤。您的支持就是作者开发和维护项目的动力🚀',
-            self
-        )
-        w.yesButton.setText('来啦老弟')
-        w.cancelButton.setText('下次一定')
+    # def showMessageBox(self):
+    #     w = MessageBox(
+    #         '支持作者🥰',
+    #         '个人开发不易，如果这个项目帮助到了您，可以考虑请作者喝一瓶快乐水🥤。您的支持就是作者开发和维护项目的动力🚀',
+    #         self
+    #     )
+    #     w.yesButton.setText('来啦老弟')
+    #     w.cancelButton.setText('下次一定')
 
-        if w.exec():
-            QDesktopServices.openUrl(QUrl("https://afdian.net/a/zhiyiYo"))
+    #     if w.exec():
+    #         QDesktopServices.openUrl(QUrl("https://afdian.net/a/zhiyiYo"))
 
     def resizeEvent(self, e):
         self.titleBar.move(46, 0)
