@@ -9,6 +9,8 @@ from qfluentwidgets import (NavigationInterface,NavigationItemPosition, Navigati
 from qfluentwidgets import FluentIcon as FIF
 from qframelesswindow import FramelessWindow, TitleBar
 
+from ui.Ui_homeframe import Ui_Frame
+
 
 class Widget(QFrame):
 
@@ -102,9 +104,10 @@ class Window(FramelessWindow):
             self, showMenuButton=True, showReturnButton=True)
         self.stackWidget = QStackedWidget(self)
 
+        
         # create sub interface
         # self.searchInterface = Widget('Search Interface', self)
-        self.homeInterface = Widget('Home Interface', self)
+        self.homeInterface = Ui_Frame(self)
         # self.videoInterface = Widget('Video Interface', self)
         # self.folderInterface = Widget('Folder Interface', self)
         self.settingInterface = Widget('Setting Interface', self)
