@@ -106,5 +106,5 @@ class Ui_SettingFrame(object):
         self.BodyLabel_3.setText(_translate("SettingFrame", "触控模式"))
         self.ComboBox.setText(_translate("SettingFrame", "minitouch"))
         self.BodyLabel_2.setText(_translate("SettingFrame", "连接配置"))
-        self.ComboBox_2.setText(_translate("SettingFrame", "mumu 模拟器"))
+        self.ComboBox_2.setText(_translate("SettingFrame", "mumu 模拟器 12"))
 from qfluentwidgets import BodyLabel, ComboBox, EditableComboBox, LineEdit, PushButton
