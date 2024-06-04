@@ -1,7 +1,12 @@
 
+import sys
+import os
+sys.path.append(f"{os.path.dirname(os.path.dirname(os.path.realpath(__file__)))}")
+from kiloncore import controller, context
 from PyQt5.QtWidgets import QApplication, QFrame, QStackedWidget, QHBoxLayout, QLabel
 from ui.Ui_homeframe import Ui_HomeFrame
 from qfluentwidgets import CheckBox
+from PyQt5.QtCore import QObject, QThread
 
 class HomeWidget(QFrame):
     def __init__(self, parent=None):
@@ -9,6 +14,8 @@ class HomeWidget(QFrame):
         self.setObjectName('home')
         self.frame = Ui_HomeFrame()
         self.frame.setupUi(self)
+        #self.LinkStart = LinkStart(self)
+        #self.frame.LinkStartButton.clicked.connect(self.LinkStart.start())
 
         self.frame.stackedWidget.setCurrentIndex(0)
         self.frame.LevelSelect.addItems(["当前","铸币美学","尘埃运动","丰收时令"])
@@ -46,3 +53,18 @@ class HomeWidget(QFrame):
     def ChangeToCellActiveDetailPage(self):
         self.frame.stackedWidget.setCurrentIndex(5)
 
+
+   
+# class LinkStart(QThread):
+#     def __init__(self):
+#         super(LinkStart, self).__init__()
+
+#     def run(self):
+#         ## 初始化上下文
+#         super.frame.LinkStartButton.setEnabled(False)
+#         ctx = context.Context()
+#         if super.frame.CellActiveCheckBox.isChecked():
+#             controller.autoRecurrence(ctx)
+#         if super.frame.AnalysisCheckBox.isChecked():
+#             controller.volitionAlanalysis(ctx)
+#         ctx.Close()

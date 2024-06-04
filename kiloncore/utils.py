@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from core import context, adb, consts
+from kiloncore import context, adb, consts
 
 # 图片模板寻址
 def whereTemplate(ctx: context.Context,template_path):

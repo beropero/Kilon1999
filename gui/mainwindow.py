@@ -1,5 +1,7 @@
 # coding:utf-8
 import sys
+import os
+sys.path.append(f"{os.path.dirname(os.path.realpath(__file__))}")
 from PyQt5.QtCore import Qt, QRect, QUrl
 from PyQt5.QtGui import QIcon, QPainter, QImage, QBrush, QColor, QFont, QDesktopServices
 from PyQt5.QtWidgets import QApplication, QFrame, QStackedWidget, QHBoxLayout, QLabel
@@ -8,7 +10,6 @@ from qfluentwidgets import (NavigationInterface,NavigationItemPosition, Navigati
                             isDarkTheme, setTheme, Theme, qrouter)
 from qfluentwidgets import FluentIcon as FIF
 from qframelesswindow import FramelessWindow, TitleBar
-
 
 from ui.Ui_settingframe import Ui_SettingFrame
 from homewidget import HomeWidget
@@ -244,7 +245,8 @@ class Window(FramelessWindow):
         self.titleBar.resize(self.width()-46, self.titleBar.height())
 
 
-if __name__ == '__main__':
+def Start():
+
     QApplication.setHighDpiScaleFactorRoundingPolicy(
         Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
     QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)

@@ -1,4 +1,4 @@
-from core import context, consts, utils
+from kiloncore import context, consts, utils
 import time
 
 def tap(template):

@@ -1,3 +1,5 @@
+
+
 screencap = 'screencap/screenshot.png'
 enterShow = 'resource/template/enter_the_show.png'
 showResource = 'resource/template/show_resource.png'
