@@ -165,6 +165,18 @@ class Ui_HomeFrame(object):
         self.LogWidget.setMinimumSize(QtCore.QSize(300, 500))
         self.LogWidget.setMaximumSize(QtCore.QSize(300, 500))
         self.LogWidget.setObjectName("LogWidget")
+        self.gridLayout_7 = QtWidgets.QGridLayout(self.LogWidget)
+        self.gridLayout_7.setObjectName("gridLayout_7")
+        spacerItem14 = QtWidgets.QSpacerItem(20, 10, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_7.addItem(spacerItem14, 0, 1, 1, 1)
+        spacerItem15 = QtWidgets.QSpacerItem(10, 10, QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_7.addItem(spacerItem15, 1, 0, 1, 1)
+        self.LogOutput = TextEdit(self.LogWidget)
+        self.LogOutput.setMinimumSize(QtCore.QSize(150, 0))
+        self.LogOutput.setMaximumSize(QtCore.QSize(100, 16777215))
+        self.LogOutput.setReadOnly(True)
+        self.LogOutput.setObjectName("LogOutput")
+        self.gridLayout_7.addWidget(self.LogOutput, 1, 1, 1, 1)
         self.horizontalLayout.addWidget(self.LogWidget)
 
         self.retranslateUi(HomeFrame)
@@ -193,4 +205,4 @@ class Ui_HomeFrame(object):
         self.label_3.setText(_translate("HomeFrame", "刷取次数"))
         self.label.setText(_translate("HomeFrame", "关卡选择"))
         self.label_2.setText(_translate("HomeFrame", "刷取次数"))
-from qfluentwidgets import CheckBox, ComboBox, PushButton, SpinBox, TransparentToolButton
+from qfluentwidgets import CheckBox, ComboBox, PushButton, SpinBox, TextEdit, TransparentToolButton
