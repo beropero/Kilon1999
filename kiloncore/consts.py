@@ -1,4 +1,8 @@
+from datetime import datetime
 
+## 获取当前时间
+def getnowtimeformat():
+    return datetime.now().strftime("%H:%M:%S")
 
 screencap = 'screencap/screenshot.png'
 enterShow = 'resource/template/enter_the_show.png'

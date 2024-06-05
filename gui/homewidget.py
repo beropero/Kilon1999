@@ -50,7 +50,7 @@ class HomeWidget(QFrame):
 
         # 重定向输出
         sys.stdout = self
-        sys.stderr = self
+        # sys.stderr = self
 
     def setConfState(self):
         self.frame.CellActiveCheckBox.setChecked(config.conf['CellActive']['check'])
@@ -153,9 +153,12 @@ class LinkStartThread(QThread):
             ## 初始化上下文
             ctx = context.Context()
             # 开始执行
-            controller.cmd(ctx)
-
-            ctx.Close() 
+            try:
+                controller.cmd(ctx)
+            except Exception as ex:
+                print(ex)
+            finally:
+                ctx.Close() 
         except:
             print(f"{getnowtimeformat()} 连接失败 !")
         finally:

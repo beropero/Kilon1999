@@ -1,5 +1,6 @@
 from kiloncore import context, consts, utils
 import time
+from kiloncore.consts import getnowtimeformat
 
 def tap(template):
     def decorator(func):
@@ -7,12 +8,19 @@ def tap(template):
             time.sleep(1)
             x, y = utils.whereTemplate(ctx, template)
             if x == -1: 
-                return -1
+                return False
             ctx.device.tap([(x, y)])
             func(ctx)
-            return 0    
+            return True    
         return wrapper
     return decorator
+
+def setTimeOut(ctx: context.Context,func, time = 10):
+    for i in range (0, time):
+        if func(ctx):
+            return True
+    print(f"{getnowtimeformat()} 操作超时,请重试...")
+    return False
 
 @tap(consts.backHome)
 def backHome(ctx: context.Context):
