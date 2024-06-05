@@ -13,21 +13,6 @@ from qframelesswindow import FramelessWindow, TitleBar
 
 from SettingWidget import SettingWidget
 from homewidget import HomeWidget
-
-# class SettingWidget(QFrame):
-#     def __init__(self, parent=None): 
-#         super().__init__(parent=parent)
-#         self.setObjectName('setting')
-#         self.frame = Ui_SettingFrame()
-#         self.frame.setupUi(self)
-
-# class HomeWidget(QFrame):
-#     def __init__(self, parent=None):
-#         super().__init__(parent=parent)
-#         self.setObjectName('home')
-#         self.frame = Ui_HomeFrame()
-#         self.frame.setupUi(self)
-
         
 
 class Widget(QFrame):
@@ -42,44 +27,6 @@ class Widget(QFrame):
 
         # leave some space for title bar
         self.hBoxLayout.setContentsMargins(0, 32, 0, 0)
-
-
-class AvatarWidget(NavigationWidget):
-    """ Avatar widget """
-
-    def __init__(self, parent=None):
-        super().__init__(isSelectable=False, parent=parent)
-        # self.avatar = QImage('gui/resource/shoko.png').scaled(
-        #     24, 24, Qt.KeepAspectRatio, Qt.SmoothTransformation)
-
-    def paintEvent(self, e):
-        painter = QPainter(self)
-        painter.setRenderHints(
-            QPainter.SmoothPixmapTransform | QPainter.Antialiasing)
-
-        painter.setPen(Qt.NoPen)
-
-        if self.isPressed:
-            painter.setOpacity(0.7)
-
-        # draw background
-        if self.isEnter:
-            c = 255 if isDarkTheme() else 0
-            painter.setBrush(QColor(c, c, c, 10))
-            painter.drawRoundedRect(self.rect(), 5, 5)
-
-        # draw avatar
-        painter.setBrush(QBrush(self.avatar))
-        painter.translate(8, 6)
-        painter.drawEllipse(0, 0, 24, 24)
-        painter.translate(-8, -6)
-
-        if not self.isCompacted:
-            painter.setPen(Qt.white if isDarkTheme() else Qt.black)
-            font = QFont('Segoe UI')
-            font.setPixelSize(14)
-            painter.setFont(font)
-            painter.drawText(QRect(44, 0, 255, 36), Qt.AlignVCenter, 'zhiyiYo')
 
 
 class CustomTitleBar(TitleBar):
@@ -124,10 +71,7 @@ class Window(FramelessWindow):
 
         
         # create sub interface
-        # self.searchInterface = Widget('Search Interface', self)
         self.homeInterface = HomeWidget(self)
-        # self.videoInterface = Widget('Video Interface', self)
-        # self.folderInterface = Widget('Folder Interface', self)
         self.settingInterface = SettingWidget(self)
 
         # initialize layout
@@ -149,33 +93,6 @@ class Window(FramelessWindow):
         self.navigationInterface.displayModeChanged.connect(self.titleBar.raise_)
 
     def initNavigation(self):
-        # enable acrylic effect
-        # self.navigationInterface.setAcrylicEnabled(True)
-
-        # self.addSubInterface(self.searchInterface, FIF.SEARCH, 'Search')
-        
-        # self.addSubInterface(self.videoInterface, FIF.VIDEO, 'Video library')
-
-        # self.navigationInterface.addSeparator()
-
-        # add navigation items to scroll area
-        # self.addSubInterface(self.folderInterface, FIF.FOLDER, 'Folder library', NavigationItemPosition.SCROLL)
-        # for i in range(1, 21):
-        #     self.navigationInterface.addItem(
-        #         f'folder{i}',
-        #         FIF.FOLDER,
-        #         f'Folder {i}',
-        #         lambda: print('Folder clicked'),
-        #         position=NavigationItemPosition.SCROLL
-        #     )
-
-        # add custom widget to bottom
-        # self.navigationInterface.addWidget(
-        #     routeKey='avatar',
-        #     widget=AvatarWidget(),
-        #     onClick=self.showMessageBox,
-        #     position=NavigationItemPosition.BOTTOM
-        # )
 
         self.addSubInterface(self.settingInterface, FIF.SETTING, 'Settings', NavigationItemPosition.BOTTOM)
         
@@ -231,14 +148,14 @@ class Window(FramelessWindow):
     # def showMessageBox(self):
     #     w = MessageBox(
     #         '支持作者🥰',
-    #         '个人开发不易，如果这个项目帮助到了您，可以考虑请作者喝一瓶快乐水🥤。您的支持就是作者开发和维护项目的动力🚀',
+    #         '如果这个项目帮助到了您，可以给作者GitHub一个小星星⭐',
     #         self
     #     )
-    #     w.yesButton.setText('来啦老弟')
+    #     w.yesButton.setText('好的！')
     #     w.cancelButton.setText('下次一定')
 
     #     if w.exec():
-    #         QDesktopServices.openUrl(QUrl("https://afdian.net/a/zhiyiYo"))
+    #         QDesktopServices.openUrl(QUrl("https://github.com/beropero/Kilon1999"))
 
     def resizeEvent(self, e):
         self.titleBar.move(46, 0)
