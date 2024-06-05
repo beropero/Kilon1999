@@ -13,3 +13,8 @@ Window {
 NavigationBar > QLabel {
     font: 18px 'Segoe UI', 'Microsoft YaHei';
 }
+
+TextEdit {
+    font: 12px 'Segoe UI', 'Microsoft YaHei' ;
+    color: white;
+}

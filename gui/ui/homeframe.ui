@@ -470,7 +470,7 @@
      <property name="maximumSize">
       <size>
        <width>300</width>
-       <height>500</height>
+       <height>10000</height>
       </size>
      </property>
      <layout class="QGridLayout" name="gridLayout_7">
@@ -500,8 +500,8 @@
         </property>
         <property name="sizeHint" stdset="0">
          <size>
-          <width>10</width>
-          <height>10</height>
+          <width>100</width>
+          <height>60</height>
          </size>
         </property>
        </spacer>
@@ -516,7 +516,7 @@
         </property>
         <property name="maximumSize">
          <size>
-          <width>100</width>
+          <width>600</width>
           <height>16777215</height>
          </size>
         </property>

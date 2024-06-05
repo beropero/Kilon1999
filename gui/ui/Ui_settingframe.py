@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'd:\workplace\PyProject\Kilon1999\gui\ui\settingframe.ui'
+# Form implementation generated from reading ui file 'e:\workplace\PythonProject\Kilon1999\gui\ui\settingframe.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_SettingFrame(object):
     def setupUi(self, SettingFrame):
         SettingFrame.setObjectName("SettingFrame")
-        SettingFrame.resize(600, 383)
+        SettingFrame.resize(600, 384)
         self.verticalLayout = QtWidgets.QVBoxLayout(SettingFrame)
         self.verticalLayout.setObjectName("verticalLayout")
         spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
@@ -28,11 +28,11 @@ class Ui_SettingFrame(object):
         self.AdbLabel = BodyLabel(SettingFrame)
         self.AdbLabel.setObjectName("AdbLabel")
         self.horizontalLayout_4.addWidget(self.AdbLabel)
-        self.LineEdit = LineEdit(SettingFrame)
-        self.LineEdit.setMinimumSize(QtCore.QSize(250, 33))
-        self.LineEdit.setMaximumSize(QtCore.QSize(300, 33))
-        self.LineEdit.setObjectName("LineEdit")
-        self.horizontalLayout_4.addWidget(self.LineEdit)
+        self.AdbPath = LineEdit(SettingFrame)
+        self.AdbPath.setMinimumSize(QtCore.QSize(250, 33))
+        self.AdbPath.setMaximumSize(QtCore.QSize(300, 33))
+        self.AdbPath.setObjectName("AdbPath")
+        self.horizontalLayout_4.addWidget(self.AdbPath)
         self.AdbSelect = PushButton(SettingFrame)
         self.AdbSelect.setObjectName("AdbSelect")
         self.horizontalLayout_4.addWidget(self.AdbSelect)
@@ -48,12 +48,12 @@ class Ui_SettingFrame(object):
         self.ConnectLabel = BodyLabel(SettingFrame)
         self.ConnectLabel.setObjectName("ConnectLabel")
         self.ConnectLayout.addWidget(self.ConnectLabel)
-        self.ConnectBox = EditableComboBox(SettingFrame)
-        self.ConnectBox.setMinimumSize(QtCore.QSize(200, 33))
-        self.ConnectBox.setMaximumSize(QtCore.QSize(250, 33))
-        self.ConnectBox.setText("")
-        self.ConnectBox.setObjectName("ConnectBox")
-        self.ConnectLayout.addWidget(self.ConnectBox)
+        self.AdbConnectAddr = EditableComboBox(SettingFrame)
+        self.AdbConnectAddr.setMinimumSize(QtCore.QSize(200, 33))
+        self.AdbConnectAddr.setMaximumSize(QtCore.QSize(250, 33))
+        self.AdbConnectAddr.setText("")
+        self.AdbConnectAddr.setObjectName("AdbConnectAddr")
+        self.ConnectLayout.addWidget(self.AdbConnectAddr)
         spacerItem6 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.ConnectLayout.addItem(spacerItem6)
         self.verticalLayout.addLayout(self.ConnectLayout)

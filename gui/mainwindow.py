@@ -11,15 +11,15 @@ from qfluentwidgets import (NavigationInterface,NavigationItemPosition, Navigati
 from qfluentwidgets import FluentIcon as FIF
 from qframelesswindow import FramelessWindow, TitleBar
 
-from ui.Ui_settingframe import Ui_SettingFrame
+from SettingWidget import SettingWidget
 from homewidget import HomeWidget
 
-class SettingWidget(QFrame):
-    def __init__(self, parent=None): 
-        super().__init__(parent=parent)
-        self.setObjectName('setting')
-        self.frame = Ui_SettingFrame()
-        self.frame.setupUi(self)
+# class SettingWidget(QFrame):
+#     def __init__(self, parent=None): 
+#         super().__init__(parent=parent)
+#         self.setObjectName('setting')
+#         self.frame = Ui_SettingFrame()
+#         self.frame.setupUi(self)
 
 # class HomeWidget(QFrame):
 #     def __init__(self, parent=None):

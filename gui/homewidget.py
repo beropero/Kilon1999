@@ -1,4 +1,3 @@
-
 import sys
 import os
 sys.path.append(f"{os.path.dirname(os.path.dirname(os.path.realpath(__file__)))}")
@@ -63,6 +62,10 @@ class HomeWidget(QFrame):
         self.rolloverLinkStartButton()
         data = {}
         data['CellActiveCheckBox'] = self.frame.CellActiveCheckBox.isChecked()
+        data['AchieveAwardCheckBox'] = self.frame.AchieveAwardCheckBox.isChecked()
+        data['AnalysisCheckBox'] = self.frame.AnalysisCheckBox.isChecked()
+        data['SleepwalkCheckBox'] = self.frame.SleepwalkCheckBox.isChecked()
+        data['WastelandCheckBox'] = self.frame.WastelandCheckBox.isChecked()
         self.LinkStartThread = LinkStartThread(data)
         self.LinkStartThread.finish.connect(self.rolloverLinkStartButton)
         self.LinkStartThread.start()
@@ -83,6 +86,10 @@ class LinkStartThread(QThread):
     def __init__(self, data):
         super(LinkStartThread, self).__init__()
         self.CellActiveCheckBox = data['CellActiveCheckBox']
+        self.AchieveAwardCheckBox = data['AchieveAwardCheckBox']
+        self.AnalysisCheckBox = data['AnalysisCheckBox']
+        self.SleepwalkCheckBox = data['SleepwalkCheckBox']
+        self.WastelandCheckBox = data['WastelandCheckBox']
         
     def run(self):
         try :
@@ -91,13 +98,27 @@ class LinkStartThread(QThread):
             ctx = context.Context()
             print(f"{getnowtimeformat()} 连接成功 !")
             if self.CellActiveCheckBox:
-                print(f"{getnowtimeformat()} 刷活性...")
-                controller.autoRecurrence(ctx)     
+                print(f"{getnowtimeformat()} 执行任务：刷活性...")
+                controller.autoRecurrence(ctx)
+
+            if self.AnalysisCheckBox:
+                print(f"{getnowtimeformat()} 执行任务：意志解析...")
+                controller.volitionAlanalysis(ctx)
+
+            if self.WastelandCheckBox:
+                print(f"{getnowtimeformat()} 执行任务：荒原收取...")
+
+            if self.SleepwalkCheckBox:
+                print(f"{getnowtimeformat()} 执行任务：人工梦游...")
+
+            if self.AchieveAwardCheckBox:
+                print(f"{getnowtimeformat()} 执行任务：领取奖励...")
+
             ctx.Close() 
         except:
-            print(f"{getnowtimeformat()} 连接失败 ！")
+            print(f"{getnowtimeformat()} 连接失败 !")
         finally:
-            print(f"{getnowtimeformat()} 任务结束 ！")
+            print(f"{getnowtimeformat()} 任务结束 !")
             self.finish.emit(True)
             
 
