@@ -152,23 +152,8 @@ class LinkStartThread(QThread):
             print(f"{getnowtimeformat()} 建立连接...")
             ## 初始化上下文
             ctx = context.Context()
-            print(f"{getnowtimeformat()} 连接成功 !")
-            if self.CellActiveCheckBox:
-                print(f"{getnowtimeformat()} 执行任务：刷活性...")
-                controller.autoRecurrence(ctx)
-
-            if self.AnalysisCheckBox:
-                print(f"{getnowtimeformat()} 执行任务：意志解析...")
-                controller.volitionAlanalysis(ctx)
-
-            if self.WastelandCheckBox:
-                print(f"{getnowtimeformat()} 执行任务：荒原收取...")
-
-            if self.SleepwalkCheckBox:
-                print(f"{getnowtimeformat()} 执行任务：人工梦游...")
-
-            if self.AchieveAwardCheckBox:
-                print(f"{getnowtimeformat()} 执行任务：领取奖励...")
+            # 开始执行
+            controller.cmd(ctx)
 
             ctx.Close() 
         except:

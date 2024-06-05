@@ -1,6 +1,8 @@
 from kiloncore import minitouch, context
 from datetime import datetime
 
+def cmd(ctx: context.Context):
+    pass
 
 def getnowtimeformat():
     return datetime.now().strftime("%H:%M:%S")

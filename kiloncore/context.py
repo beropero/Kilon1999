@@ -6,6 +6,7 @@ import subprocess
 class Context:
     conf   = None  # 配置实例
     device = None  # minitouch设备实例
+    is_running = True # 是否运行中
 
     def __init__(self):
         # 读取配置文件

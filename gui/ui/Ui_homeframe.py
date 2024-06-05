@@ -182,7 +182,7 @@ class Ui_HomeFrame(object):
         self.horizontalLayout.addWidget(self.LogWidget)
 
         self.retranslateUi(HomeFrame)
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(5)
         QtCore.QMetaObject.connectSlotsByName(HomeFrame)
 
     def retranslateUi(self, HomeFrame):
