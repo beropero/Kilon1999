@@ -2,5 +2,26 @@
     "adb": {
         "path": "resource/adb/adb.exe",
         "addr": "127.0.0.1:16384"
+    },
+    "CellActive": {
+        "check": true,
+        "levelselect": 2,
+        "time": 99
+    },
+    "Wasteland": {
+        "check": true
+    },
+    "VolitionalAnalysis": {
+        "check": true,
+        "time": 2
+    },
+    "Sleepwalk": {
+        "check": false
+    },
+    "AchieveAward": {
+        "check": true,
+        "dayAndWeek": true,
+        "mail": true,
+        "hhJukebox": true
     }
 }

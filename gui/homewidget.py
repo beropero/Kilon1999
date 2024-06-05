@@ -8,10 +8,12 @@ from qfluentwidgets import CheckBox
 from PyQt5.QtCore import QObject, QThread, pyqtSignal
 from datetime import datetime
 
+import config
+
 class HomeWidget(QFrame):
     def __init__(self, parent=None):
         super().__init__(parent=parent)
-        self.setObjectName('home')
+        
         self.frame = Ui_HomeFrame()
         self.frame.setupUi(self)
 
@@ -19,6 +21,9 @@ class HomeWidget(QFrame):
 
         self.frame.stackedWidget.setCurrentIndex(0)
         self.frame.LevelSelect.addItems(["当前","铸币美学","尘埃运动","丰收时令"])
+
+        self.setConfState()
+
         self.frame.AchieveAwardDetailButton.clicked.connect(self.ChangeToAchieveAwardDetailPage)
         self.frame.WastelandDetailButton.clicked.connect(self.ChangeToWastelandDetailPage)
         self.frame.AnalysisDetailButton.clicked.connect(self.ChangeToAnalysisDetailPage)
@@ -28,17 +33,48 @@ class HomeWidget(QFrame):
         self.frame.CheckAllButton.clicked.connect(self.CheckAllCheckBox)
         self.frame.ClearAllButton.clicked.connect(self.ClearAllCheckBox)
 
+        self.frame.CellActiveCheckBox.clicked.connect(self.confChangeEvent)
+        self.frame.AnalysisCheckBox.clicked.connect(self.confChangeEvent)
+        self.frame.WastelandCheckBox.clicked.connect(self.confChangeEvent)
+        self.frame.SleepwalkCheckBox.clicked.connect(self.confChangeEvent)
+        self.frame.AchieveAwardCheckBox.clicked.connect(self.confChangeEvent)
+
+        self.frame.PerDayorWeekCheckBox.clicked.connect(self.confChangeEvent)
+        self.frame.MailAwardCheckBox.clicked.connect(self.confChangeEvent)
+        self.frame.HHAwardCheckBox.clicked.connect(self.confChangeEvent)
+
+        self.frame.AnalysisTime.valueChanged.connect(self.confChangeEvent)
+
+        self.frame.CellActiveTime.valueChanged.connect(self.confChangeEvent)
+        self.frame.LevelSelect.currentIndexChanged.connect(self.confChangeEvent)
+
         # 重定向输出
         sys.stdout = self
         sys.stderr = self
 
-    
+    def setConfState(self):
+        self.frame.CellActiveCheckBox.setChecked(config.conf['CellActive']['check'])
+        self.frame.AnalysisCheckBox.setChecked(config.conf['VolitionalAnalysis']['check'])
+        self.frame.WastelandCheckBox.setChecked(config.conf['Wasteland']['check'])
+        self.frame.SleepwalkCheckBox.setChecked( config.conf['Sleepwalk']['check'])
+        self.frame.AchieveAwardCheckBox.setChecked(config.conf['AchieveAward']['check'])
+
+        self.frame.PerDayorWeekCheckBox.setChecked(config.conf['AchieveAward']['dayAndWeek'])
+        self.frame.MailAwardCheckBox.setChecked(config.conf['AchieveAward']['mail'])
+        self.frame.HHAwardCheckBox.setChecked(config.conf['AchieveAward']['hhJukebox'])
+
+        self.frame.AnalysisTime.setValue(config.conf['VolitionalAnalysis']['time'])
+
+        self.frame.CellActiveTime.setValue(config.conf['CellActive']['time'])
+        self.frame.LevelSelect.setCurrentIndex(config.conf['CellActive']['levelselect'])
+
     def CheckAllCheckBox(self):
         self.frame.AnalysisCheckBox.setChecked(True)
         self.frame.SleepwalkCheckBox.setChecked(True)
         self.frame.AchieveAwardCheckBox.setChecked(True)
         self.frame.CellActiveCheckBox.setChecked(True)
         self.frame.WastelandCheckBox.setChecked(True)
+        self.confChangeEvent()
 
     def ClearAllCheckBox(self):
         self.frame.AnalysisCheckBox.setChecked(False)
@@ -46,6 +82,7 @@ class HomeWidget(QFrame):
         self.frame.AchieveAwardCheckBox.setChecked(False)
         self.frame.CellActiveCheckBox.setChecked(False)
         self.frame.WastelandCheckBox.setChecked(False)
+        self.confChangeEvent()
 
     def ChangeToAchieveAwardDetailPage(self):
         self.frame.stackedWidget.setCurrentIndex(1)
@@ -69,6 +106,25 @@ class HomeWidget(QFrame):
         self.LinkStartThread = LinkStartThread(data)
         self.LinkStartThread.finish.connect(self.rolloverLinkStartButton)
         self.LinkStartThread.start()
+
+
+    def confChangeEvent(self):
+        config.conf['CellActive']['check'] = self.frame.CellActiveCheckBox.isChecked()
+        config.conf['Wasteland']['check'] = self.frame.AnalysisCheckBox.isChecked()
+        config.conf['VolitionalAnalysis']['check'] = self.frame.WastelandCheckBox.isChecked()
+        config.conf['Sleepwalk']['check'] = self.frame.SleepwalkCheckBox.isChecked()
+        config.conf['AchieveAward']['check'] = self.frame.AchieveAwardCheckBox.isChecked()
+        
+        config.conf['AchieveAward']['dayAndWeek'] = self.frame.PerDayorWeekCheckBox.isChecked()
+        config.conf['AchieveAward']['mail'] = self.frame.MailAwardCheckBox.isChecked()
+        config.conf['AchieveAward']['hhJukebox'] = self.frame.HHAwardCheckBox.isChecked()
+        
+        config.conf['VolitionalAnalysis']['time'] = self.frame.AnalysisTime.value()
+
+        config.conf['CellActive']['levelselect'] = self.frame.LevelSelect.currentIndex()
+        config.conf['CellActive']['time'] = self.frame.CellActiveTime.value()
+
+        config.saveconf()
 
     ## 翻转按钮状态
     def rolloverLinkStartButton(self):
