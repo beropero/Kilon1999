@@ -255,7 +255,7 @@
         <widget class="QWidget" name="AchieveAwardDetailPage">
          <layout class="QGridLayout" name="gridLayout_3">
           <item row="3" column="0">
-           <widget class="CheckBox" name="CheckBox_2">
+           <widget class="CheckBox" name="MailAwardCheckBox">
             <property name="text">
              <string>领取所有邮件奖励</string>
             </property>
@@ -278,7 +278,7 @@
            </spacer>
           </item>
           <item row="5" column="0">
-           <widget class="CheckBox" name="CheckBox_3">
+           <widget class="CheckBox" name="HHAwardCheckBox">
             <property name="text">
              <string>领取吼吼点唱机</string>
             </property>
@@ -314,7 +314,7 @@
            </spacer>
           </item>
           <item row="1" column="0">
-           <widget class="CheckBox" name="CheckBox">
+           <widget class="CheckBox" name="PerDayorWeekCheckBox">
             <property name="text">
              <string>领取每日/每周任务</string>
             </property>
@@ -368,7 +368,7 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="SpinBox" name="SpinBox_2"/>
+           <widget class="SpinBox" name="AnalysisTime"/>
           </item>
           <item row="2" column="1">
            <spacer name="verticalSpacer_11">
@@ -424,7 +424,7 @@
            </spacer>
           </item>
           <item row="3" column="1">
-           <widget class="SpinBox" name="SpinBox"/>
+           <widget class="SpinBox" name="CellActiveTime"/>
           </item>
           <item row="1" column="1">
            <widget class="ComboBox" name="LevelSelect"/>
@@ -485,23 +485,7 @@
         <property name="sizeHint" stdset="0">
          <size>
           <width>20</width>
-          <height>10</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="1" column="0">
-       <spacer name="horizontalSpacer_3">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeType">
-         <enum>QSizePolicy::Maximum</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>100</width>
-          <height>60</height>
+          <height>20</height>
          </size>
         </property>
        </spacer>
@@ -524,6 +508,38 @@
          <bool>true</bool>
         </property>
        </widget>
+      </item>
+      <item row="1" column="0">
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Minimum</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>30</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="1" column="2">
+       <spacer name="horizontalSpacer_4">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Minimum</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>10</height>
+         </size>
+        </property>
+       </spacer>
       </item>
      </layout>
     </widget>
