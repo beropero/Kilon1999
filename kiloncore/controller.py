@@ -2,10 +2,16 @@ from kiloncore import minitouch, context
 from kiloncore.consts import getnowtimeformat
 from kiloncore.minitouch import setTimeOut
 from kiloncore.task import WastelandTack
+from kiloncore.task import VolitionalAnalysisTask
 
 def cmd(ctx: context.Context):
-    wt = WastelandTack(ctx)
-    wt.execute()
+    tasklist = [
+        VolitionalAnalysisTask(ctx),
+        WastelandTack(ctx), 
+    ]    
+
+    for i in tasklist:
+        i.execute()
 
 ## 自动重现
 def autoRecurrence(ctx: context.Context):    
@@ -27,38 +33,3 @@ def autoRecurrence(ctx: context.Context):
         return
 
     autoRecurrence(ctx)
-
-## 意志解析
-def volitionAlanalysis(ctx: context.Context):
-    while minitouch.enterShow(ctx) == -1:
-        minitouch.backHome(ctx)
-         
-    while minitouch.enterresource(ctx) == -1:
-        continue
-    while minitouch.volitionAlanalysis(ctx) == -1:
-        continue
-
-    minitouch.volitionAlanalysislevel(ctx)
-
-    minitouch.starAction(ctx)
-    
-    while minitouch.memoryActionMode(ctx) == -1:
-        continue
-   
-    minitouch.selectTime(ctx)
-  
-    minitouch.selectx2(ctx)
-      
-    while minitouch.recurrence(ctx) == -1:
-        continue
-    
-    if minitouch.outcellActivity(ctx) == 0:
-        return
-
-    while minitouch.actionSuccess(ctx) == -1:
-        continue
-
-    minitouch.actionSuccess(ctx)
-
-    minitouch.backHome(ctx)
-

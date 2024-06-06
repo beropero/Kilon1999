@@ -2,6 +2,23 @@ import cv2
 import numpy as np
 from kiloncore import context, adb, consts
 
+from PIL import Image
+import pytesseract
+
+def getcharfromimage(template_path):
+
+    image = Image.open(consts.cellActive)
+    content = pytesseract.image_to_string(image)   # 识别图片
+    print(content)
+
+
+# 获取屏幕分辨率
+def getWandH(ctx: context.Context):
+    adb.screencap(ctx)
+    src = cv2.imread(consts.screencap, cv2.IMREAD_GRAYSCALE)
+    sw, sh = src.shape[::-1]
+    return sw, sh
+
 # 图片模板寻址
 def whereTemplate(ctx: context.Context,template_path):
     adb.screencap(ctx)

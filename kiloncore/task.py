@@ -3,6 +3,8 @@ from kiloncore import minitouch
 from kiloncore.minitouch import setTimeOut
 from kiloncore import context
 from kiloncore.consts import getnowtimeformat
+from kiloncore import utils
+import time
 
 class Tack(metaclass=ABCMeta):
     ## 执行步骤
@@ -14,6 +16,44 @@ class Tack(metaclass=ABCMeta):
     @abstractmethod
     def execute(self):
         pass
+    
+# 意志解析任务
+class VolitionalAnalysisTask(Tack):
+    def __init__(self, ctx: context.Context):
+        self.ctx = ctx
+        self.Time = self.ctx.conf['VolitionalAnalysis']['time']
+        self.Check = self.ctx.conf['VolitionalAnalysis']['check']
+
+    # 进入show
+    def EnterShow(self, ctx):
+        if not minitouch.enterShow(self.ctx):
+            minitouch.backHome(self.ctx)
+            return False
+        return True
+
+    # 进入意志解析
+    def EnterVolitionalAnalysis(self):
+        if not setTimeOut(self.ctx, self.EnterShow):
+            return
+        minitouch.enterresource(self.ctx)
+        minitouch.enterresource(self.ctx)
+        if not minitouch.volitionAlanalysis(self.ctx):
+            w, h = utils.getWandH(self.ctx)
+            for i in range(0, 3):
+                minitouch.swipe(self.ctx, 1/2*h, 2/3*w, 1/2*h, 1/3*w)
+                time.sleep(1)
+            minitouch.volitionAlanalysis(self.ctx)
+        minitouch.volitionAlanalysislevel(self.ctx)
+
+    def process(self):
+        self.EnterVolitionalAnalysis()
+
+    def execute(self):
+        if not self.Check and not self.Time > 0:
+            return
+        print(f"{getnowtimeformat()} 意志解析")
+        self.process()
+
 
 # 荒原收取任务
 class WastelandTack(Tack):
@@ -40,9 +80,11 @@ class WastelandTack(Tack):
         minitouch.back(self.ctx)
 
     def process(self):
-        setTimeOut(self.ctx, self.EnterWasteland)
+        if not setTimeOut(self.ctx, self.EnterWasteland):
+            return
     
-        setTimeOut(self.ctx, minitouch.wastelandHome)
+        if not setTimeOut(self.ctx, minitouch.wastelandHome):
+            return
        
         self.CollecWastelandtZlce()
 

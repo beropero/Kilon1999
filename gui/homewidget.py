@@ -49,7 +49,7 @@ class HomeWidget(QFrame):
         self.frame.LevelSelect.currentIndexChanged.connect(self.confChangeEvent)
 
         # 重定向输出
-        sys.stdout = self
+        # sys.stdout = self
         # sys.stderr = self
 
     def setConfState(self):
@@ -110,8 +110,8 @@ class HomeWidget(QFrame):
 
     def confChangeEvent(self):
         config.conf['CellActive']['check'] = self.frame.CellActiveCheckBox.isChecked()
-        config.conf['Wasteland']['check'] = self.frame.AnalysisCheckBox.isChecked()
-        config.conf['VolitionalAnalysis']['check'] = self.frame.WastelandCheckBox.isChecked()
+        config.conf['Wasteland']['check'] = self.frame.WastelandCheckBox.isChecked()
+        config.conf['VolitionalAnalysis']['check'] = self.frame.AnalysisCheckBox.isChecked()
         config.conf['Sleepwalk']['check'] = self.frame.SleepwalkCheckBox.isChecked()
         config.conf['AchieveAward']['check'] = self.frame.AchieveAwardCheckBox.isChecked()
         

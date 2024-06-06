@@ -1,6 +1,7 @@
 from kiloncore import context, consts, utils
 import time
 from kiloncore.consts import getnowtimeformat
+from pyminitouch import safe_connection, CommandBuilder
 
 def tap(template):
     def decorator(func):
@@ -95,4 +96,4 @@ def back(ctx: context.Context):
     pass
 
 def swipe(ctx: context.Context, x1,y1, x2, y2):
-    ctx.device.swipe([(x1, y1), (x2, y2)])
+    ctx.device.ext_smooth_swipe([(x1, y1), (x2, y2)],part=10,duration=30)
