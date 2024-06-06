@@ -49,7 +49,7 @@ class VolitionalAnalysisTask(Tack):
         self.EnterVolitionalAnalysis()
 
     def execute(self):
-        if not self.Check and not self.Time > 0:
+        if not self.Check or self.Time == 0:
             return
         print(f"{getnowtimeformat()} 意志解析")
         self.process()
@@ -100,4 +100,62 @@ class WastelandTack(Tack):
         if not self.ctx.conf['Wasteland']['check']:
             return
         print(f"{getnowtimeformat()} 荒原收取")
+        self.process()
+
+
+class AchieveAwardTask:
+    def __init__(self, ctx: context.Context):
+        self.ctx = ctx
+        self.dayAndWeek = self.ctx.conf['AchieveAward']['dayAndWeek']
+        self.mail = self.ctx.conf['AchieveAward']['mail']
+        self.hhJukebox = self.ctx.conf['AchieveAward']['hhJukebox']
+
+    def AchieveDayAndWeekAward(self):
+        minitouch.enterdayweektask(self.ctx)
+        if minitouch.receiveallaward(self.ctx):
+            time.sleep(3)
+            minitouch.tapbottom(self.ctx)
+        if minitouch.achieveaward(self.ctx):
+            time.sleep(3)
+            minitouch.tapbottom(self.ctx)
+        minitouch.weekaward(self.ctx)
+        if minitouch.receiveallaward(self.ctx):
+            time.sleep(3)
+            minitouch.tapbottom(self.ctx)
+        if minitouch.achieveaward(self.ctx):
+            time.sleep(3)
+            minitouch.tapbottom(self.ctx)
+    
+    def Achievehhaward(self):
+        minitouch.enterhouhou(self.ctx)
+        if minitouch.achievehouhouaward(self.ctx):
+            time.sleep(3)
+            minitouch.tapbottom(self.ctx)
+        minitouch.focusaward(self.ctx)
+        if minitouch.achievehouhouaward(self.ctx):
+            time.sleep(3)
+            minitouch.tapbottom(self.ctx)
+
+    def AchieveMailAward(self):
+        minitouch.entermail(self.ctx)
+        minitouch.achievemailaward(self.ctx)
+        time.sleep(3)
+        minitouch.tapbottom(self.ctx)
+
+    def process(self):
+        minitouch.backHome(self.ctx)
+        if self.dayAndWeek:
+            self.AchieveDayAndWeekAward()
+            minitouch.backHome(self.ctx)
+        if self.mail:
+            self.AchieveMailAward()
+            minitouch.back(self.ctx)
+        if self.hhJukebox:
+            self.Achievehhaward()
+            minitouch.backHome(self.ctx)
+
+    def execute(self):
+        if not self.ctx.conf['AchieveAward']['check']:
+            return
+        print(f"{getnowtimeformat()} 奖励领取")
         self.process()

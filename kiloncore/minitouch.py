@@ -2,6 +2,7 @@ from kiloncore import context, consts, utils
 import time
 from kiloncore.consts import getnowtimeformat
 from pyminitouch import safe_connection, CommandBuilder
+from kiloncore import utils
 
 def tap(template):
     def decorator(func):
@@ -94,6 +95,54 @@ def wastelandTrust(ctx: context.Context):
 @tap(consts.back)
 def back(ctx: context.Context):
     pass
+
+@tap(consts.dayweektask)
+def enterdayweektask(ctx: context.Context):
+    pass
+
+@tap(consts.achieveaward)
+def achieveaward(ctx: context.Context):
+    pass
+
+@tap(consts.achievemailaward)
+def achievemailaward(ctx: context.Context):
+    pass
+
+@tap(consts.mail)
+def entermail(ctx: context.Context):
+    pass
+
+@tap(consts.houhou)
+def enterhouhou(ctx: context.Context):
+    pass
+
+@tap(consts.weekaward)
+def weekaward(ctx: context.Context):
+    pass
+
+@tap(consts.receiveAllAward)
+def receiveallaward(ctx: context.Context):
+    pass
+
+@tap(consts.dwachievesuccess)
+def dwachievesuccess(ctx: context.Context):
+    pass
+
+@tap(consts.achievehouhouaward)
+def achievehouhouaward(ctx: context.Context):
+    pass
+
+@tap(consts.hhlevelup)
+def hhlevelup(ctx: context.Context):
+    pass
+
+@tap(consts.focusaward)
+def focusaward(ctx: context.Context):
+    pass
+
+def tapbottom(ctx: context.Context):
+    w, h = utils.getWandH(ctx)
+    ctx.device.tap([(1/6 * h, 1/2 * w)])
 
 def swipe(ctx: context.Context, x1,y1, x2, y2):
     ctx.device.ext_smooth_swipe([(x1, y1), (x2, y2)],part=10,duration=30)

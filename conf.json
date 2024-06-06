@@ -9,17 +9,17 @@
         "time": 99
     },
     "Wasteland": {
-        "check": false
+        "check": true
     },
     "VolitionalAnalysis": {
-        "check": true,
+        "check": false,
         "time": 2
     },
     "Sleepwalk": {
         "check": false
     },
     "AchieveAward": {
-        "check": false,
+        "check": true,
         "dayAndWeek": true,
         "mail": true,
         "hhJukebox": true

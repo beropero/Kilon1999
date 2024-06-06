@@ -49,7 +49,7 @@ class HomeWidget(QFrame):
         self.frame.LevelSelect.currentIndexChanged.connect(self.confChangeEvent)
 
         # 重定向输出
-        # sys.stdout = self
+        sys.stdout = self
         # sys.stderr = self
 
     def setConfState(self):
