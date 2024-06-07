@@ -178,6 +178,22 @@ def hhlevelup(ctx: context.Context):
 def focusaward(ctx: context.Context):
     pass
 
+@tap(consts.oldhall)
+def oldhall(ctx: context.Context):
+    pass
+
+@tap(consts.oldhallposition)
+def oldhallposition(ctx: context.Context):
+    pass
+
+@tap(consts.collectlcze)
+def collectlcze(ctx: context.Context):
+    pass
+
+@tap(consts.collectwc)
+def collectwc(ctx: context.Context):
+    pass
+
 def tapbottom(ctx: context.Context):
     w, h = utils.getWandH(ctx)
     ctx.device.tap([(1/6 * h, 1/2 * w)])

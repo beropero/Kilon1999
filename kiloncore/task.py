@@ -302,30 +302,31 @@ class WastelandTask(Task):
             return False
         return True
 
-    ## 收取智利齿儿
-    def CollecWastelandtZlce(self):
-        for i in range(0, 3):
-            minitouch.wastelandZlce(self.ctx)
-        minitouch.back(self.ctx)
+    # ## 收取智利齿儿
+    # def CollecWastelandtZlce(self):
+    #     for i in range(0, 3):
+    #         minitouch.wastelandZlce(self.ctx)
+    #     minitouch.back(self.ctx)
     
-    ## 收取微尘
-    def CollecWastelandtWc(self):
-        for i in range(0, 3):
-            minitouch.wastelandWc(self.ctx)    
-        minitouch.back(self.ctx)
+    # ## 收取微尘
+    # def CollecWastelandtWc(self):
+    #     for i in range(0, 3):
+    #         minitouch.wastelandWc(self.ctx)    
+    #     minitouch.back(self.ctx)
 
     def process(self):
         if not setTimeOut(self.ctx, self.EnterWasteland):
             exit(0)
 
-        time.sleep(10)
-        minitouch.wastelandHome(self.ctx)
+        setTimeOut(self.ctx, minitouch.oldhallposition)
 
-        self.CollecWastelandtWc()
-       
-        self.CollecWastelandtZlce()
+        minitouch.oldhall(self.ctx)
 
-        
+        minitouch.collectwc(self.ctx)
+        # 收取利齿子儿
+        minitouch.collectlcze(self.ctx)
+        # 收取微尘
+        minitouch.back(self.ctx)
 
         ## 收取信赖
         minitouch.wastelandTrust(self.ctx)

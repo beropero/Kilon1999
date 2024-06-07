@@ -4,16 +4,16 @@
         "addr": "127.0.0.1:16384"
     },
     "CellActive": {
-        "check": true,
+        "check": false,
         "levelselect": 1,
         "time": 4,
-        "nextlevels": 0
+        "nextlevels": 2
     },
     "Wasteland": {
         "check": true
     },
     "VolitionalAnalysis": {
-        "check": true,
+        "check": false,
         "time": 2
     },
     "Sleepwalk": {
