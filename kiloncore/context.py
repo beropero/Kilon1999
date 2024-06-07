@@ -2,11 +2,13 @@ from pyminitouchModify import MNTDevice
 import json
 import os
 import subprocess
+from kiloncore.consts import getnowtimeformat
 
 class Context:
     conf   = None  # 配置实例
     device = None  # minitouch设备实例
     is_running = True # 是否运行中
+    cellActive = None # 细胞活性数量
 
     def __init__(self):
         # 读取配置文件
@@ -24,8 +26,12 @@ class Context:
     # adb 连接
     def adbConnect(self):
         adb = self.conf["adb"]
-        subprocess.run(f"adb connect {adb['addr']}", stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        subprocess.run("adb root")
+        result = subprocess.run(f"adb connect {adb['addr']}", stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+        if result.returncode != 0:
+            print(f"{getnowtimeformat()} 连接失败")
+        else:
+            print(f"{getnowtimeformat()} 连接成功")
 
     # 修改 adb 配置
     def adbChange(self, keyword, value):

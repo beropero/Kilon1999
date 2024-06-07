@@ -1,19 +1,21 @@
 from kiloncore import minitouch, context
 from kiloncore.consts import getnowtimeformat
 from kiloncore.minitouch import setTimeOut
-from kiloncore.task import WastelandTack, VolitionalAnalysisTask, AchieveAwardTask
+from kiloncore.task import WastelandTask, VolitionalAnalysisTask, AchieveAwardTask,CellActiveTask
 import time
+from typing import List
+from kiloncore.task import Task
 
 def cmd(ctx: context.Context):
-    tasklist = [
+    tasklist:  List[Task]= [
         VolitionalAnalysisTask(ctx),
-        WastelandTack(ctx), 
+        WastelandTask(ctx), 
         AchieveAwardTask(ctx),
+        CellActiveTask(ctx),
     ]    
 
     for i in tasklist:
         i.execute()
-        time.sleep(5)
 
 ## 自动重现
 def autoRecurrence(ctx: context.Context):    

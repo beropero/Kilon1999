@@ -160,7 +160,7 @@ class LinkStartThread(QThread):
             finally:
                 ctx.Close() 
         except:
-            print(f"{getnowtimeformat()} 连接失败 !")
+            pass
         finally:
             print(f"{getnowtimeformat()} 任务结束 !")
             self.finish.emit(True)

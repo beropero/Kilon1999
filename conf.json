@@ -4,22 +4,22 @@
         "addr": "127.0.0.1:16384"
     },
     "CellActive": {
-        "check": false,
-        "levelselect": 2,
+        "check": true,
+        "levelselect": 1,
         "time": 99
     },
     "Wasteland": {
-        "check": true
+        "check": false
     },
     "VolitionalAnalysis": {
         "check": false,
-        "time": 2
+        "time": 5
     },
     "Sleepwalk": {
         "check": false
     },
     "AchieveAward": {
-        "check": true,
+        "check": false,
         "dayAndWeek": true,
         "mail": true,
         "hhJukebox": true

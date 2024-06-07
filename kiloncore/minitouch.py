@@ -7,6 +7,8 @@ from kiloncore import utils
 def tap(template):
     def decorator(func):
         def wrapper(ctx: context.Context):
+            if not ctx.is_running:
+                exit(0)
             time.sleep(1)
             x, y = utils.whereTemplate(ctx, template)
             if x == -1: 
@@ -60,16 +62,52 @@ def enterresource(ctx: context.Context):
 def volitionAlanalysis(ctx: context.Context):
     pass
 
+@tap(consts.CoinageAesthetics)
+def CoinageAesthetics(ctx: context.Context):
+    pass
+
+@tap(consts.HarvestSeason)
+def HarvestSeason(ctx: context.Context):
+    pass
+
+@tap(consts.DustMovement)
+def DustMovement(ctx: context.Context):
+    pass
+
 @tap(consts.levelVA)
 def volitionAlanalysislevel(ctx: context.Context):
+    pass
+
+@tap(consts.levelCA)
+def CoinageAestheticslevel(ctx: context.Context):
+    pass
+
+@tap(consts.levelHS)
+def HarvestSeasonlevel(ctx: context.Context):
+    pass
+
+@tap(consts.levelDM)
+def DustMovementlevel(ctx: context.Context):
     pass
 
 @tap(consts.selectTime)
 def selectTime(ctx: context.Context):
     pass
 
+@tap(consts.x1)
+def selectx1(ctx: context.Context):
+    pass
+
 @tap(consts.x2)
 def selectx2(ctx: context.Context):
+    pass
+
+@tap(consts.x3)
+def selectx3(ctx: context.Context):
+    pass
+
+@tap(consts.x4)
+def selectx4(ctx: context.Context):
     pass
 
 @tap(consts.wasteland)
