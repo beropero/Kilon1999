@@ -198,5 +198,9 @@ def tapbottom(ctx: context.Context):
     w, h = utils.getWandH(ctx)
     ctx.device.tap([(1/6 * h, 1/2 * w)])
 
+def tapcenter(ctx: context.Context):
+    w, h = utils.getWandH(ctx)
+    ctx.device.tap([(1/2 * h, 1/2 * w)])
+
 def swipe(ctx: context.Context, x1,y1, x2, y2):
     ctx.device.ext_smooth_swipe([(x1, y1), (x2, y2)],part=10,duration=30)

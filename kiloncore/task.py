@@ -351,7 +351,8 @@ class AchieveAwardTask:
         self.hhJukebox = self.ctx.conf['AchieveAward']['hhJukebox']
 
     def AchieveDayAndWeekAward(self):
-        minitouch.enterdayweektask(self.ctx)
+        if not setTimeOut(self.ctx, minitouch.enterdayweektask):
+            exit(0)
         if minitouch.receiveallaward(self.ctx):
             time.sleep(3)
             minitouch.tapbottom(self.ctx)
@@ -367,7 +368,8 @@ class AchieveAwardTask:
             minitouch.tapbottom(self.ctx)
     
     def Achievehhaward(self):
-        minitouch.enterhouhou(self.ctx)
+        if not setTimeOut(self.ctx, minitouch.enterhouhou):
+            exit(0)
         if minitouch.achievehouhouaward(self.ctx):
             time.sleep(3)
             minitouch.tapbottom(self.ctx)
@@ -377,22 +379,30 @@ class AchieveAwardTask:
             minitouch.tapbottom(self.ctx)
 
     def AchieveMailAward(self):
-        minitouch.entermail(self.ctx)
+        if not setTimeOut(self.ctx, minitouch.entermail):
+            exit(0)
         minitouch.achievemailaward(self.ctx)
         time.sleep(3)
         minitouch.tapbottom(self.ctx)
 
     def process(self):
         minitouch.backHome(self.ctx)
+        minitouch.tapcenter(self.ctx)
         if self.dayAndWeek:
+            print(f"{getnowtimeformat()} 任务")
             self.AchieveDayAndWeekAward()
             minitouch.backHome(self.ctx)
         if self.mail:
+            print(f"{getnowtimeformat()} 邮件")
             self.AchieveMailAward()
             minitouch.back(self.ctx)
         if self.hhJukebox:
+            print(f"{getnowtimeformat()} 点唱机")
             self.Achievehhaward()
             minitouch.backHome(self.ctx)
+        
+        
+        
 
     def execute(self):
         if not self.ctx.conf['AchieveAward']['check']:

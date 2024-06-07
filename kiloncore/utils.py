@@ -64,7 +64,7 @@ def imageTailor(ctx: context.Context,template_path):
     # 找到最佳匹配位置
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
 
-    if max_val < 0.6:
+    if max_val < 0.3:
         return False, None
 
     top_left = max_loc
