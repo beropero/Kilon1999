@@ -60,7 +60,8 @@ class CellActiveTask(Task):
     def cellactivetime(self):
         if self.Time == 0:
             return
-        
+        minitouch.memoryActionMode(self.ctx)
+
         minitouch.selectTime(self.ctx)
         minitouch.selectx1(self.ctx)
 
@@ -68,7 +69,7 @@ class CellActiveTask(Task):
 
         flag, self.lastactive = utils.residualActivity(self.ctx)
         if flag:
-            print(f"{getnowtimeformat()} 剩余细胞活性：{self.lastactive}/192")
+            print(f"{getnowtimeformat()} 剩余细胞活性：{self.lastactive}")
 
             if self.lastactive < self.oneactive:
                 print(f"{getnowtimeformat()} 活性不足")
@@ -95,7 +96,7 @@ class CellActiveTask(Task):
                     self.recurrence()
                     self.lastactive -= 4 * self.oneactive
                     print(f"{getnowtimeformat()} 完成4级复现 x {i+1}")
-                    print(f"{getnowtimeformat()} 剩余细胞活性：{self.lastactive}/192")
+                    print(f"{getnowtimeformat()} 剩余细胞活性：{self.lastactive}")
 
                 time.sleep(4)
 
@@ -106,7 +107,7 @@ class CellActiveTask(Task):
                 self.recurrence()
                 self.lastactive -= surplustime * self.oneactive
                 print(f"{getnowtimeformat()} 完成{surplustime}级复现 x 1")
-                print(f"{getnowtimeformat()} 剩余细胞活性：{self.lastactive}/192")
+                print(f"{getnowtimeformat()} 剩余细胞活性：{self.lastactive}")
 
                 time.sleep(4) 
 
@@ -136,7 +137,7 @@ class CellActiveTask(Task):
             self.cellactivetime()
 
         # 剩余理智
-        if self.level == 0:
+        if self.nextlevel == 0:
             return
         self.Time = 999
         if self.level == 1:
@@ -203,6 +204,7 @@ class VolitionalAnalysisTask(Task):
             return
         self.EnterVolitionalAnalysis()
         time.sleep(4)
+        minitouch.memoryActionMode(self.ctx)
         flag, depth = utils.residualAnalysis(self.ctx)
         if flag:
             print(f"{getnowtimeformat()} 深度解析次数：{depth}/2")
@@ -218,7 +220,7 @@ class VolitionalAnalysisTask(Task):
     def cellactivetime(self):
         if self.Time == 0:
             return
-        
+        minitouch.memoryActionMode(self.ctx)
         minitouch.selectTime(self.ctx)
         minitouch.selectx1(self.ctx)
 
@@ -226,7 +228,7 @@ class VolitionalAnalysisTask(Task):
 
         flag, self.lastactive = utils.residualActivity(self.ctx)
         if flag:
-            print(f"{getnowtimeformat()} 剩余细胞活性：{self.lastactive}/192")
+            print(f"{getnowtimeformat()} 剩余细胞活性：{self.lastactive}")
 
             if self.lastactive < self.oneactive:
                 print(f"{getnowtimeformat()} 活性不足")
@@ -253,7 +255,7 @@ class VolitionalAnalysisTask(Task):
                     self.recurrence()
                     self.lastactive -= 4 * self.oneactive
                     print(f"{getnowtimeformat()} 完成4级复现 x {i+1}")
-                    print(f"{getnowtimeformat()} 剩余细胞活性：{self.lastactive}/192")
+                    print(f"{getnowtimeformat()} 剩余细胞活性：{self.lastactive}")
 
                 time.sleep(4)
 
@@ -264,7 +266,7 @@ class VolitionalAnalysisTask(Task):
                 self.recurrence()
                 self.lastactive -= surplustime * self.oneactive
                 print(f"{getnowtimeformat()} 完成{surplustime}级复现 x 1")
-                print(f"{getnowtimeformat()} 剩余细胞活性：{self.lastactive}/192")
+                print(f"{getnowtimeformat()} 剩余细胞活性：{self.lastactive}")
 
                 time.sleep(4)
 

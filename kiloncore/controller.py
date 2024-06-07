@@ -8,11 +8,10 @@ from kiloncore.task import Task
 
 def cmd(ctx: context.Context):
     tasklist:  List[Task]= [
+        CellActiveTask(ctx),
         VolitionalAnalysisTask(ctx),
         WastelandTask(ctx), 
-        WastelandTask(ctx), 
         AchieveAwardTask(ctx),
-        CellActiveTask(ctx),
     ]    
 
     for i in tasklist:
