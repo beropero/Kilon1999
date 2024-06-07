@@ -318,7 +318,8 @@ class WastelandTask(Task):
         if not setTimeOut(self.ctx, self.EnterWasteland):
             exit(0)
 
-        setTimeOut(self.ctx, minitouch.oldhallposition)
+        if not setTimeOut(self.ctx, minitouch.oldhallposition):
+            exit(0)
 
         minitouch.oldhall(self.ctx)
 
