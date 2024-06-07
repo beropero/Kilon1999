@@ -87,8 +87,6 @@ class CellActiveTask(Task):
             # 剩余复现次数
             surplustime = x1time%4
 
-            print(x1time, x4time, surplustime)
-
             # 开始复现
             if x4time > 0:
                 minitouch.selectTime(self.ctx)
