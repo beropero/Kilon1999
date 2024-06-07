@@ -140,15 +140,15 @@ class CellActiveTask(Task):
         if self.nextlevel == 0:
             return
         self.Time = 999
-        if self.level == 1:
+        if self.nextlevel == 1:
             self.Enterlevel(minitouch.CoinageAesthetics, minitouch.CoinageAestheticslevel)
             time.sleep(4)
             self.cellactivetime()
-        elif self.level == 2:
+        elif self.nextlevel == 2:
             self.Enterlevel(minitouch.DustMovement, minitouch.DustMovementlevel)
             time.sleep(4)
             self.cellactivetime()
-        elif self.level == 3:
+        elif self.nextlevel == 3:
             self.Enterlevel(minitouch.HarvestSeason, minitouch.HarvestSeasonlevel)
             time.sleep(4)
             self.cellactivetime()
