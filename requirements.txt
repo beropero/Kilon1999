@@ -1,7 +1,9 @@
+cnocr==2.3.0.2
 loguru==0.7.2
 numpy==1.26.4
+opencv_contrib_python==4.10.0.82
 opencv_python==4.9.0.80
-pyminitouch==0.3.3
+opencv_python_headless==4.10.0.82
 PyQt5==5.15.10
 PyQt5_sip==12.13.0
 PyQt_Fluent_Widgets==1.5.7
