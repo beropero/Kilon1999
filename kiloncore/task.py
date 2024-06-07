@@ -24,7 +24,7 @@ class CellActiveTask(Task):
         self.Time = self.ctx.conf['CellActive']['time']
         self.Check = self.ctx.conf['CellActive']['check']
         self.level = self.ctx.conf['CellActive']['levelselect']
-    
+        self.nextlevel = self.ctx.conf['CellActive']['nextlevels']
     # 进入show
     def EnterShow(self, ctx):
         if not minitouch.enterShow(self.ctx):
@@ -135,8 +135,25 @@ class CellActiveTask(Task):
             time.sleep(4)
             self.cellactivetime()
 
+        # 剩余理智
+        if self.level == 0:
+            return
+        self.Time = 999
+        if self.level == 1:
+            self.Enterlevel(minitouch.CoinageAesthetics, minitouch.CoinageAestheticslevel)
+            time.sleep(4)
+            self.cellactivetime()
+        elif self.level == 2:
+            self.Enterlevel(minitouch.DustMovement, minitouch.DustMovementlevel)
+            time.sleep(4)
+            self.cellactivetime()
+        elif self.level == 3:
+            self.Enterlevel(minitouch.HarvestSeason, minitouch.HarvestSeasonlevel)
+            time.sleep(4)
+            self.cellactivetime()
+
     def execute(self):
-        if not self.Check or self.Time == 0:
+        if not self.Check or (self.Time == 0 and self.nextlevel == 0):
             return
         print(f"{getnowtimeformat()} 刷活性")
         self.process()

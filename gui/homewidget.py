@@ -21,6 +21,7 @@ class HomeWidget(QFrame):
 
         self.frame.stackedWidget.setCurrentIndex(0)
         self.frame.LevelSelect.addItems(["当前","铸币美学","尘埃运动","丰收时令"])
+        self.frame.NextLevel.addItems(["不选择","铸币美学","尘埃运动","丰收时令"])
 
         self.setConfState()
 
@@ -47,6 +48,7 @@ class HomeWidget(QFrame):
 
         self.frame.CellActiveTime.valueChanged.connect(self.confChangeEvent)
         self.frame.LevelSelect.currentIndexChanged.connect(self.confChangeEvent)
+        self.frame.NextLevel.currentIndexChanged.connect(self.confChangeEvent)
 
         # 重定向输出
         sys.stdout = self
@@ -67,6 +69,7 @@ class HomeWidget(QFrame):
 
         self.frame.CellActiveTime.setValue(config.conf['CellActive']['time'])
         self.frame.LevelSelect.setCurrentIndex(config.conf['CellActive']['levelselect'])
+        self.frame.NextLevel.setCurrentIndex(config.conf['CellActive']['nextlevels'])
 
     def CheckAllCheckBox(self):
         self.frame.AnalysisCheckBox.setChecked(True)
@@ -122,6 +125,7 @@ class HomeWidget(QFrame):
         config.conf['VolitionalAnalysis']['time'] = self.frame.AnalysisTime.value()
 
         config.conf['CellActive']['levelselect'] = self.frame.LevelSelect.currentIndex()
+        config.conf['CellActive']['nextlevels'] = self.frame.NextLevel.currentIndex()
         config.conf['CellActive']['time'] = self.frame.CellActiveTime.value()
 
         config.saveconf()
