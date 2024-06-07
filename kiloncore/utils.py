@@ -2,15 +2,6 @@ import cv2
 import numpy as np
 from kiloncore import context, adb, consts
 
-from PIL import Image
-import pytesseract
-
-def getcharfromimage(template_path):
-
-    image = Image.open(consts.cellActive)
-    content = pytesseract.image_to_string(image)   # 识别图片
-    print(content)
-
 
 # 获取屏幕分辨率
 def getWandH(ctx: context.Context):
