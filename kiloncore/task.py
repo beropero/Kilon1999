@@ -6,7 +6,7 @@ from kiloncore.consts import getnowtimeformat
 from kiloncore import utils
 import time
 
-class Tack(metaclass=ABCMeta):
+class Task(metaclass=ABCMeta):
     ## 执行步骤
     @abstractmethod
     def process(self):
@@ -18,7 +18,7 @@ class Tack(metaclass=ABCMeta):
         pass
     
 # 意志解析任务
-class VolitionalAnalysisTask(Tack):
+class VolitionalAnalysisTask(Task):
     def __init__(self, ctx: context.Context):
         self.ctx = ctx
         self.Time = self.ctx.conf['VolitionalAnalysis']['time']
@@ -56,7 +56,7 @@ class VolitionalAnalysisTask(Tack):
 
 
 # 荒原收取任务
-class WastelandTack(Tack):
+class WastelandTask(Task):
     def __init__(self, ctx: context.Context):
         self.ctx = ctx
     

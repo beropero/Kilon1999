@@ -1,13 +1,14 @@
 from kiloncore import minitouch, context
 from kiloncore.consts import getnowtimeformat
 from kiloncore.minitouch import setTimeOut
-from kiloncore.task import WastelandTack, VolitionalAnalysisTask, AchieveAwardTask
+from kiloncore.task import WastelandTask, VolitionalAnalysisTask, AchieveAwardTask, Task
 import time
+from typing import List
 
 def cmd(ctx: context.Context):
-    tasklist = [
+    tasklist: List[Task] = [
         VolitionalAnalysisTask(ctx),
-        WastelandTack(ctx), 
+        WastelandTask(ctx), 
         AchieveAwardTask(ctx),
     ]    
 
