@@ -10,6 +10,7 @@ def cmd(ctx: context.Context):
     tasklist:  List[Task]= [
         VolitionalAnalysisTask(ctx),
         WastelandTask(ctx), 
+        WastelandTask(ctx), 
         AchieveAwardTask(ctx),
         CellActiveTask(ctx),
     ]    

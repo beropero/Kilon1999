@@ -1,7 +1,7 @@
 from kiloncore import context, consts, utils
 import time
 from kiloncore.consts import getnowtimeformat
-from pyminitouch import safe_connection, CommandBuilder
+from pyminitouchModify import safe_connection, CommandBuilder
 from kiloncore import utils
 
 def tap(template):

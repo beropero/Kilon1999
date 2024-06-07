@@ -10,6 +10,7 @@
     },
     "Wasteland": {
         "check": false
+        "check": false
     },
     "VolitionalAnalysis": {
         "check": false,
@@ -19,6 +20,7 @@
         "check": false
     },
     "AchieveAward": {
+        "check": false,
         "check": false,
         "dayAndWeek": true,
         "mail": true,
