@@ -69,7 +69,7 @@ class CellActiveTask(Task):
 
         flag, self.lastactive = utils.residualActivity(self.ctx)
         if flag:
-            print(f"{getnowtimeformat()} 剩余细胞活性：{self.lastactive}")
+            print(f"{getnowtimeformat()} 剩余活性：{self.lastactive}")
 
             if self.lastactive < self.oneactive:
                 print(f"{getnowtimeformat()} 活性不足")
@@ -95,8 +95,8 @@ class CellActiveTask(Task):
                 for i in range(0, x4time):
                     self.recurrence()
                     self.lastactive -= 4 * self.oneactive
-                    print(f"{getnowtimeformat()} 完成4级复现 x {i+1}")
-                    print(f"{getnowtimeformat()} 剩余细胞活性：{self.lastactive}")
+                    print(f"{getnowtimeformat()} 4级复现 x {i+1}")
+                    print(f"{getnowtimeformat()} 剩余活性：{self.lastactive}")
 
                 time.sleep(4)
 
@@ -106,8 +106,8 @@ class CellActiveTask(Task):
                 select(self.ctx)
                 self.recurrence()
                 self.lastactive -= surplustime * self.oneactive
-                print(f"{getnowtimeformat()} 完成{surplustime}级复现 x 1")
-                print(f"{getnowtimeformat()} 剩余细胞活性：{self.lastactive}")
+                print(f"{getnowtimeformat()} {surplustime}级复现 x 1")
+                print(f"{getnowtimeformat()} 剩余活性：{self.lastactive}")
 
                 time.sleep(4) 
 
@@ -207,7 +207,7 @@ class VolitionalAnalysisTask(Task):
         minitouch.memoryActionMode(self.ctx)
         flag, depth = utils.residualAnalysis(self.ctx)
         if flag:
-            print(f"{getnowtimeformat()} 深度解析次数：{depth}/2")
+            print(f"{getnowtimeformat()} 深度解析：{depth}/2")
             if self.Time >= 2:
                 self.Time -= depth
                 rt = depth if self.Time < depth else self.Time
@@ -228,7 +228,7 @@ class VolitionalAnalysisTask(Task):
 
         flag, self.lastactive = utils.residualActivity(self.ctx)
         if flag:
-            print(f"{getnowtimeformat()} 剩余细胞活性：{self.lastactive}")
+            print(f"{getnowtimeformat()} 剩余活性：{self.lastactive}")
 
             if self.lastactive < self.oneactive:
                 print(f"{getnowtimeformat()} 活性不足")
@@ -254,8 +254,8 @@ class VolitionalAnalysisTask(Task):
                 for i in range(0, x4time):
                     self.recurrence()
                     self.lastactive -= 4 * self.oneactive
-                    print(f"{getnowtimeformat()} 完成4级复现 x {i+1}")
-                    print(f"{getnowtimeformat()} 剩余细胞活性：{self.lastactive}")
+                    print(f"{getnowtimeformat()} 4级复现 x {i+1}")
+                    print(f"{getnowtimeformat()} 剩余活性：{self.lastactive}")
 
                 time.sleep(4)
 
@@ -265,8 +265,8 @@ class VolitionalAnalysisTask(Task):
                 select(self.ctx)
                 self.recurrence()
                 self.lastactive -= surplustime * self.oneactive
-                print(f"{getnowtimeformat()} 完成{surplustime}级复现 x 1")
-                print(f"{getnowtimeformat()} 剩余细胞活性：{self.lastactive}")
+                print(f"{getnowtimeformat()} {surplustime}级复现 x 1")
+                print(f"{getnowtimeformat()} 剩余活性：{self.lastactive}")
 
                 time.sleep(4)
 
@@ -317,13 +317,15 @@ class WastelandTask(Task):
     def process(self):
         if not setTimeOut(self.ctx, self.EnterWasteland):
             exit(0)
-    
-        if not setTimeOut(self.ctx, minitouch.wastelandHome):
-            exit(0)
+
+        time.sleep(10)
+        minitouch.wastelandHome(self.ctx)
+
+        self.CollecWastelandtWc()
        
         self.CollecWastelandtZlce()
 
-        self.CollecWastelandtWc()
+        
 
         ## 收取信赖
         minitouch.wastelandTrust(self.ctx)

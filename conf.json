@@ -7,7 +7,7 @@
         "check": true,
         "levelselect": 1,
         "time": 4,
-        "nextlevels": 2
+        "nextlevels": 0
     },
     "Wasteland": {
         "check": true
