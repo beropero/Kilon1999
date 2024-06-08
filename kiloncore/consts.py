@@ -5,6 +5,7 @@ def getnowtimeformat():
     return datetime.now().strftime("%H:%M:%S")
 
 screencap = 'screencap/screenshot.png'
+temp = 'screencap/temp.png'
 enterShow = 'resource/template/enter_the_show.png'
 showResource = 'resource/template/show_resource.png'
 backHome = 'resource/template/back_home.png'

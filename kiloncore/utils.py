@@ -1,4 +1,4 @@
-from cv2 import imread, matchTemplate, IMREAD_GRAYSCALE, TM_CCOEFF_NORMED, minMaxLoc
+from cv2 import imread, matchTemplate, IMREAD_GRAYSCALE, TM_CCOEFF_NORMED, minMaxLoc, imwrite
 from numpy import where
 from kiloncore import context, adb, consts
 from cnocr import CnOcr
@@ -45,14 +45,20 @@ def whereTemplate(ctx: context.Context,template_path):
 
 # 读取图片数字
 def digitalRecognition(image):
-    ocr = CnOcr(det_model_fp='resource/cnorcmodel/en_PP-OCRv3_det_infer.onnx',
-                rec_vocab_fp="resource/cnorcmodel/label_cn.txt",
-                rec_model_fp="resource/cnorcmodel/cnocr-v2.3-densenet_lite_136-gru-epoch=004-ft-model.onnx") 
-    result = ocr.ocr(image)
-    res = ''.join([i for i in result[0]['text'] if i.isdigit()])
-    if res == "":
+    try:
+        ocr = CnOcr(rec_vocab_fp="resource/cnorcmodel/label_cn.txt",
+                    rec_root="resource/cnorcmodel/",
+                    det_root="resource/cnorcmodel/") 
+        result = ocr.ocr(consts.temp)
+        
+        res = ''.join([i for i in result[0]['text'] if i.isdigit()])
+
+        if res == "":
+            return 0
+        return int(res)
+    except Exception as ex:
+        print(ex)
         return 0
-    return int(res)
 
 # 裁剪截图模板区域
 def imageTailor(ctx: context.Context,template_path):
@@ -78,6 +84,8 @@ def imageTailor(ctx: context.Context,template_path):
 
     # 剪裁图像
     cropped_image = image[top_left[1]:bottom_right[1], top_left[0]:bottom_right[0]]
+
+    imwrite(consts.temp, cropped_image)
 
     return True, cropped_image
 
