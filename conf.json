@@ -10,7 +10,7 @@
         "nextlevels": 0
     },
     "Wasteland": {
-        "check": true
+        "check": false
     },
     "VolitionalAnalysis": {
         "check": false,

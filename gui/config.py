@@ -8,6 +8,6 @@ with open('conf.json', 'r', encoding='utf-8') as f:
 
 
 def saveconf():
-    with open(f"{os.path.dirname(os.path.dirname(os.path.realpath(__file__)))}/conf.json", 'w', encoding='utf-8') as f:
+    with open(f"conf.json", 'w', encoding='utf-8') as f:
         f.write(json.dumps(conf, indent=4))
 
