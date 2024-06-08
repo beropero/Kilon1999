@@ -4,7 +4,7 @@
         "addr": "127.0.0.1:16384"
     },
     "CellActive": {
-        "check": false,
+        "check": true,
         "levelselect": 1,
         "time": 4,
         "nextlevels": 2
@@ -20,7 +20,7 @@
         "check": false
     },
     "AchieveAward": {
-        "check": true,
+        "check": false,
         "dayAndWeek": true,
         "mail": false,
         "hhJukebox": false
