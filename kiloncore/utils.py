@@ -45,9 +45,11 @@ def whereTemplate(ctx: context.Context,template_path):
 
 # 读取图片数字
 def digitalRecognition(image):
-    ocr = CnOcr(det_model_fp='resource/cnorcmodel/en_PP-OCRv3_det_infer.onnx') 
+    ocr = CnOcr(det_model_fp='resource/cnorcmodel/en_PP-OCRv3_det_infer.onnx',rec_vocab_fp="resource/cnorcmodel/label_cn.txt") 
     result = ocr.ocr(image)
     res = ''.join([i for i in result[0]['text'] if i.isdigit()])
+    if res == "":
+        return 0
     return int(res)
 
 # 裁剪截图模板区域

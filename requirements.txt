@@ -1,4 +1,4 @@
-cnocr==2.3.0.2
+cnocr[ort-cpu]
 loguru==0.7.2
 numpy==1.26.4
 opencv_contrib_python==4.10.0.82

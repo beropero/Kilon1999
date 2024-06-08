@@ -4,8 +4,8 @@
         "addr": "127.0.0.1:16384"
     },
     "CellActive": {
-        "check": false,
-        "levelselect": 1,
+        "check": true,
+        "levelselect": 0,
         "time": 4,
         "nextlevels": 0
     },

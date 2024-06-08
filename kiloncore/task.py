@@ -3,7 +3,7 @@ from kiloncore import minitouch
 from kiloncore.minitouch import setTimeOut
 from kiloncore import context
 from kiloncore.consts import getnowtimeformat
-from kiloncore import utils
+from kiloncore import utils, consts
 import time
 
 class Task(metaclass=ABCMeta):
@@ -120,7 +120,7 @@ class CellActiveTask(Task):
 
     def process(self):
         if self.level == 0:
-            minitouch.starAction()
+            minitouch.starAction(self.ctx)
             time.sleep(4)
             self.cellactivetime()
         if self.level == 1:
@@ -205,16 +205,18 @@ class VolitionalAnalysisTask(Task):
         self.EnterVolitionalAnalysis()
         time.sleep(4)
         minitouch.memoryActionMode(self.ctx)
-        flag, depth = utils.residualAnalysis(self.ctx)
-        if flag:
-            print(f"{getnowtimeformat()} 深度解析：{depth}/2")
-            if self.Time >= 2:
-                self.Time -= depth
-                rt = depth if self.Time < depth else self.Time
-                minitouch.selectTime(self.ctx)
-                select = getattr(minitouch, f"selectx{rt}")
-                select(self.ctx)
-                self.recurrence()
+        x, _ = utils.whereTemplate(self.ctx, consts.depthanalysis)
+        if x != -1:
+            flag, depth = utils.residualAnalysis(self.ctx)
+            if flag:
+                print(f"{getnowtimeformat()} 深度解析：{depth}/2")
+                if self.Time >= 2:
+                    self.Time -= depth
+                    rt = depth if self.Time < depth else self.Time
+                    minitouch.selectTime(self.ctx)
+                    select = getattr(minitouch, f"selectx{rt}")
+                    select(self.ctx)
+                    self.recurrence()
     
     # 活性复现
     def cellactivetime(self):
