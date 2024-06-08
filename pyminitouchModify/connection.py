@@ -42,16 +42,16 @@ class MNTInstaller(object):
         logger.info("target minitouch: " + mnt_path)
         # push and grant
         subprocess.check_call(
-            [_ADB, "-s", self.device_id, "push", mnt_path, config.MNT_HOME]
+            [_ADB, "-s", self.device_id, "push", mnt_path, config.MNT_HOME],creationflags=subprocess.CREATE_NO_WINDOW
         )
         subprocess.check_call(
-            [_ADB, "-s", self.device_id, "shell", "chmod", "777", config.MNT_HOME]
+            [_ADB, "-s", self.device_id, "shell", "chmod", "777", config.MNT_HOME],creationflags=subprocess.CREATE_NO_WINDOW
         )
         logger.info("minitouch already installed in {}".format(config.MNT_HOME))
 
     def is_mnt_existed(self):
         file_list = subprocess.check_output(
-            [_ADB, "-s", self.device_id, "shell", "ls", "/data/local/tmp"]
+            [_ADB, "-s", self.device_id, "shell", "ls", "/data/local/tmp"],creationflags=subprocess.CREATE_NO_WINDOW
         )
         return "minitouch" in file_list.decode(config.DEFAULT_CHARSET)
 
@@ -122,7 +122,7 @@ class MNTServer(object):
             "localabstract:minitouch",
         ]
         logger.debug("forward command: {}".format(" ".join(command_list)))
-        output = subprocess.check_output(command_list)
+        output = subprocess.check_output(command_list,creationflags=subprocess.CREATE_NO_WINDOW)
         logger.debug("output: {}".format(output))
 
     def _start_mnt(self):
@@ -135,7 +135,7 @@ class MNTServer(object):
             "/data/local/tmp/minitouch",
         ]
         logger.info("start minitouch: {}".format(" ".join(command_list)))
-        self.mnt_process = subprocess.Popen(command_list, stdout=subprocess.DEVNULL)
+        self.mnt_process = subprocess.Popen(command_list, stdout=subprocess.DEVNULL,creationflags=subprocess.CREATE_NO_WINDOW)
 
     def heartbeat(self):
         """ check if minitouch process alive """

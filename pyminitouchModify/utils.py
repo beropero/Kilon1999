@@ -37,8 +37,8 @@ def is_port_using(port_num):
 def restart_adb():
     """ restart adb server """
     _ADB = config.ADB_EXECUTOR
-    subprocess.check_call([_ADB, "kill-server"])
-    subprocess.check_call([_ADB, "start-server"])
+    subprocess.check_call([_ADB, "kill-server"],creationflags=subprocess.CREATE_NO_WINDOW)
+    subprocess.check_call([_ADB, "start-server"],creationflags=subprocess.CREATE_NO_WINDOW)
 
 
 def is_device_connected(device_id):
@@ -46,7 +46,7 @@ def is_device_connected(device_id):
     _ADB = config.ADB_EXECUTOR
     try:
         device_name = subprocess.check_output(
-            [_ADB, "-s", device_id, "shell", "getprop", "ro.product.model"]
+            [_ADB, "-s", device_id, "shell", "getprop", "ro.product.model"],creationflags=subprocess.CREATE_NO_WINDOW
         )
         device_name = (
             device_name.decode(config.DEFAULT_CHARSET)

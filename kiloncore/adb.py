@@ -11,5 +11,5 @@ def screencap(ctx: context.Context):
     cmds = [screencap, pullscreen, rmscreen]
 
     for cmd in cmds:
-        subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE,creationflags=subprocess.CREATE_NO_WINDOW)
 

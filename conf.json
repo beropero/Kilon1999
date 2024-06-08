@@ -20,7 +20,7 @@
         "check": false
     },
     "AchieveAward": {
-        "check": true,
+        "check": false,
         "dayAndWeek": true,
         "mail": true,
         "hhJukebox": true

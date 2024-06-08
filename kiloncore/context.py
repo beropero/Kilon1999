@@ -26,7 +26,7 @@ class Context:
     # adb 连接
     def adbConnect(self):
         adb = self.conf["adb"]
-        result = subprocess.run(f"adb connect {adb['addr']}", stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        result = subprocess.run(f"adb connect {adb['addr']}", stdout=subprocess.PIPE, stderr=subprocess.PIPE,creationflags=subprocess.CREATE_NO_WINDOW)
 
         if result.returncode != 0:
             print(f"{getnowtimeformat()} 连接失败")
