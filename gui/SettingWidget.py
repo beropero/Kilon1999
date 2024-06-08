@@ -2,14 +2,9 @@
 import sys
 import os
 sys.path.append(f"{os.path.dirname(os.path.dirname(os.path.realpath(__file__)))}")
-from kiloncore import controller, context
-from PyQt5.QtWidgets import QApplication, QFrame, QStackedWidget, QHBoxLayout, QLabel, QFileDialog
-from ui.Ui_settingframe import Ui_SettingFrame
-from qfluentwidgets import CheckBox
-from PyQt5.QtCore import QObject, QThread, pyqtSignal
-from datetime import datetime
-import json
-import config
+from PyQt5.QtWidgets import  QFrame, QFileDialog
+from gui.ui.Ui_settingframe import Ui_SettingFrame
+from gui import config
 
 class SettingWidget(QFrame):
     def __init__(self, parent=None): 

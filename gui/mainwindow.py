@@ -2,17 +2,17 @@
 import sys
 import os
 sys.path.append(f"{os.path.dirname(os.path.realpath(__file__))}")
-from PyQt5.QtCore import Qt, QRect, QUrl
-from PyQt5.QtGui import QIcon, QPainter, QImage, QBrush, QColor, QFont, QDesktopServices
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QFrame, QStackedWidget, QHBoxLayout, QLabel
 
-from qfluentwidgets import (NavigationInterface,NavigationItemPosition, NavigationWidget, MessageBox,
+from qfluentwidgets import (NavigationInterface,NavigationItemPosition,
                             isDarkTheme, setTheme, Theme, qrouter)
 from qfluentwidgets import FluentIcon as FIF
 from qframelesswindow import FramelessWindow, TitleBar
 
-from SettingWidget import SettingWidget
-from homewidget import HomeWidget
+from gui.SettingWidget import SettingWidget
+from gui.homewidget import HomeWidget
         
 
 class Widget(QFrame):
@@ -110,7 +110,7 @@ class Window(FramelessWindow):
     def initWindow(self):
         self.resize(800, 500)
         self.setMinimumSize(800, 500)
-        self.setWindowIcon(QIcon('gui/resource/logo.png'))
+        self.setWindowIcon(QIcon('resource/gui/logo.png'))
         self.setWindowTitle('  Kilon1999')
         self.titleBar.setAttribute(Qt.WA_StyledBackground)
 
@@ -134,7 +134,7 @@ class Window(FramelessWindow):
 
     def setQss(self):
         color = 'dark' if isDarkTheme() else 'light'
-        with open(f'gui/resource/{color}/demo.qss', encoding='utf-8') as f:
+        with open(f'resource/gui/{color}/demo.qss', encoding='utf-8') as f:
             self.setStyleSheet(f.read())
 
     def switchTo(self, widget):

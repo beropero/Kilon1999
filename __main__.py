@@ -1,4 +1,5 @@
 import sys
+import os
 from gui import mainwindow
 
 # 错误处理

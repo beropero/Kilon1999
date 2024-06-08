@@ -2,13 +2,12 @@ import sys
 import os
 sys.path.append(f"{os.path.dirname(os.path.dirname(os.path.realpath(__file__)))}")
 from kiloncore import controller, context
-from PyQt5.QtWidgets import QApplication, QFrame, QStackedWidget, QHBoxLayout, QLabel
-from ui.Ui_homeframe import Ui_HomeFrame
-from qfluentwidgets import CheckBox
-from PyQt5.QtCore import QObject, QThread, pyqtSignal
+from PyQt5.QtWidgets import QFrame
+from gui.ui.Ui_homeframe import Ui_HomeFrame
+from PyQt5.QtCore import  QThread, pyqtSignal
 from datetime import datetime
 
-import config
+from gui import config
 
 class HomeWidget(QFrame):
     def __init__(self, parent=None):
