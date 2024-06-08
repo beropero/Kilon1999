@@ -3,6 +3,7 @@ import os
 sys.path.append(f"{os.path.dirname(os.path.dirname(os.path.realpath(__file__)))}")
 from kiloncore import controller, context
 from PyQt5.QtWidgets import QFrame
+from PyQt5 import QtWidgets
 from gui.ui.Ui_homeframe import Ui_HomeFrame
 from PyQt5.QtCore import  QThread, pyqtSignal
 from datetime import datetime
@@ -10,6 +11,7 @@ from datetime import datetime
 from gui import config
 
 class HomeWidget(QFrame):
+    LinkStartThread = None
     def __init__(self, parent=None):
         super().__init__(parent=parent)
         
@@ -141,6 +143,7 @@ class HomeWidget(QFrame):
 
 class LinkStartThread(QThread):
     finish = pyqtSignal(bool)
+    ctx = None
 
     def __init__(self, data):
         super(LinkStartThread, self).__init__()
@@ -154,20 +157,21 @@ class LinkStartThread(QThread):
         try :
             print(f"{getnowtimeformat()} 建立连接...")
             ## 初始化上下文
-            ctx = context.Context()
+            self.ctx = context.Context()
             # 开始执行
             try:
-                controller.cmd(ctx)
+                controller.cmd(self.ctx)
             except Exception as ex:
                 print(ex)
             finally:
-                ctx.Close() 
+                self.ctx.Close() 
         except:
             pass
         finally:
             print(f"{getnowtimeformat()} 任务结束 !")
             self.finish.emit(True)
-            
+    
+
 
 def getnowtimeformat():
     return datetime.now().strftime("%H:%M:%S")

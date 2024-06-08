@@ -13,6 +13,8 @@ from qframelesswindow import FramelessWindow, TitleBar
 
 from gui.SettingWidget import SettingWidget
 from gui.homewidget import HomeWidget
+
+from PyQt5 import QtWidgets
         
 
 class Widget(QFrame):
@@ -161,6 +163,11 @@ class Window(FramelessWindow):
         self.titleBar.move(46, 0)
         self.titleBar.resize(self.width()-46, self.titleBar.height())
 
+    def closeEvent(self, event):
+        if self.homeInterface.LinkStartThread != None:
+            if self.homeInterface.LinkStartThread != None:
+                self.homeInterface.LinkStartThread.ctx.Close()
+        
 
 def Start():
 

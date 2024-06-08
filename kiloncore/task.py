@@ -355,6 +355,10 @@ class AchieveAwardTask:
     def AchieveDayAndWeekAward(self):
         if not setTimeOut(self.ctx, minitouch.enterdayweektask):
             exit(0)
+
+        if not setTimeOut(self.ctx, minitouch.dayaward):
+            exit(0)
+
         if minitouch.receiveallaward(self.ctx):
             time.sleep(3)
             minitouch.tapbottom(self.ctx)

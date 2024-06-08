@@ -40,4 +40,6 @@ class Context:
             f.write(json.dumps(self.conf, indent=4))
 
     def Close(self):
+        adb = self.conf["adb"]
+        subprocess.run(f"adb disconnect {adb['addr']}", stdout=subprocess.PIPE, stderr=subprocess.PIPE,creationflags=subprocess.CREATE_NO_WINDOW)
         self.device.stop()

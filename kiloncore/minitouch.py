@@ -158,6 +158,10 @@ def enterhouhou(ctx: context.Context):
 def weekaward(ctx: context.Context):
     pass
 
+@tap(consts.dayaward)
+def dayaward(ctx: context.Context):
+    pass
+
 @tap(consts.receiveAllAward)
 def receiveallaward(ctx: context.Context):
     pass
