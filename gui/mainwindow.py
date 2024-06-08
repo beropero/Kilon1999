@@ -167,6 +167,8 @@ class Window(FramelessWindow):
         if self.homeInterface.LinkStartThread != None:
             if self.homeInterface.LinkStartThread != None:
                 self.homeInterface.LinkStartThread.ctx.Close()
+                import subprocess
+                subprocess.run(f"adb kill-server", stdout=subprocess.PIPE, stderr=subprocess.PIPE,creationflags=subprocess.CREATE_NO_WINDOW)
         
 
 def Start():
