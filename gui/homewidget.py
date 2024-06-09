@@ -100,16 +100,22 @@ class HomeWidget(QFrame):
         self.frame.stackedWidget.setCurrentIndex(5)
     
     def LinkStart(self):
-        self.rolloverLinkStartButton()
-        data = {}
-        data['CellActiveCheckBox'] = self.frame.CellActiveCheckBox.isChecked()
-        data['AchieveAwardCheckBox'] = self.frame.AchieveAwardCheckBox.isChecked()
-        data['AnalysisCheckBox'] = self.frame.AnalysisCheckBox.isChecked()
-        data['SleepwalkCheckBox'] = self.frame.SleepwalkCheckBox.isChecked()
-        data['WastelandCheckBox'] = self.frame.WastelandCheckBox.isChecked()
-        self.LinkStartThread = LinkStartThread(data)
-        self.LinkStartThread.finish.connect(self.rolloverLinkStartButton)
-        self.LinkStartThread.start()
+        if self.frame.LinkStartButton.text() == "Link Start!":
+            self.rolloverLinkStartButton()
+            data = {}
+            data['CellActiveCheckBox'] = self.frame.CellActiveCheckBox.isChecked()
+            data['AchieveAwardCheckBox'] = self.frame.AchieveAwardCheckBox.isChecked()
+            data['AnalysisCheckBox'] = self.frame.AnalysisCheckBox.isChecked()
+            data['SleepwalkCheckBox'] = self.frame.SleepwalkCheckBox.isChecked()
+            data['WastelandCheckBox'] = self.frame.WastelandCheckBox.isChecked()
+            self.LinkStartThread = LinkStartThread(data)
+            self.LinkStartThread.finish.connect(self.rolloverLinkStartButton)
+            self.LinkStartThread.start()
+            self.frame.LinkStartButton.setText("Stop")
+        elif self.frame.LinkStartButton.text() == "Stop":
+            print(f"{getnowtimeformat()} 停止中...")
+            self.stop()
+           
 
 
     def confChangeEvent(self):
@@ -131,9 +137,17 @@ class HomeWidget(QFrame):
 
         config.saveconf()
 
+    ## 停止
+    def stop(self):
+        self.frame.LinkStartButton.setEnabled(not self.frame.LinkStartButton.isEnabled())
+        self.LinkStartThread.is_running = False
+        if self.LinkStartThread.ctx != None:
+            self.LinkStartThread.ctx.is_running = False
+
     ## 翻转按钮状态
     def rolloverLinkStartButton(self):
-        self.frame.LinkStartButton.setEnabled(not self.frame.LinkStartButton.isEnabled())
+        self.frame.LinkStartButton.setEnabled(True)
+        self.frame.LinkStartButton.setText("Link Start!")
    
     def write(self, text):
         self.frame.LogOutput.insertPlainText(text)
@@ -144,7 +158,7 @@ class HomeWidget(QFrame):
 class LinkStartThread(QThread):
     finish = pyqtSignal(bool)
     ctx = None
-
+    is_running = True
     def __init__(self, data):
         super(LinkStartThread, self).__init__()
         self.CellActiveCheckBox = data['CellActiveCheckBox']
@@ -158,6 +172,8 @@ class LinkStartThread(QThread):
             print(f"{getnowtimeformat()} 建立连接...")
             ## 初始化上下文
             self.ctx = context.Context()
+            if not self.is_running:
+                exit(0)
             # 开始执行
             try:
                 controller.cmd(self.ctx)
