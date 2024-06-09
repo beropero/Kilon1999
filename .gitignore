@@ -7,6 +7,7 @@ screencap/*.png
 # C extensions
 *.so
 
+Pipfile
 out/
 # Distribution / packaging
 .Python

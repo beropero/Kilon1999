@@ -10,10 +10,10 @@
         "nextlevels": 2
     },
     "Wasteland": {
-        "check": true
+        "check": false
     },
     "VolitionalAnalysis": {
-        "check": false,
+        "check": true,
         "time": 2
     },
     "Sleepwalk": {
