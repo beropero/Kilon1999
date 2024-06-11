@@ -66,6 +66,9 @@ class CellActiveTask(Task):
         minitouch.selectx1(self.ctx)
 
         self.oneactive = self.onetimehowmach()
+        if self.oneactive == 0:
+            print(f"{getnowtimeformat()} 活性不足")
+            return
 
         flag, self.lastactive = utils.residualActivity(self.ctx)
         if flag:
@@ -114,7 +117,7 @@ class CellActiveTask(Task):
     # 读取一次多少活性
     def onetimehowmach(self):
         flag, active = utils.howMachActive(self.ctx)
-        if flag:
+        if flag and active!=0:
             print(f"{getnowtimeformat()} 关卡活性：{active}")
         return active
 
@@ -227,6 +230,10 @@ class VolitionalAnalysisTask(Task):
         minitouch.selectx1(self.ctx)
 
         self.oneactive = self.onetimehowmach()
+
+        if self.oneactive == 0:
+            print(f"{getnowtimeformat()} 活性不足")
+            return
 
         flag, self.lastactive = utils.residualActivity(self.ctx)
         if flag:
