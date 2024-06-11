@@ -282,7 +282,7 @@ class VolitionalAnalysisTask(Task):
     # 读取一次多少活性
     def onetimehowmach(self):
         flag, active = utils.howMachActive(self.ctx)
-        if flag:
+        if flag and active != 0:
             print(f"{getnowtimeformat()} 关卡活性：{active}")
         return active
 
@@ -372,7 +372,10 @@ class AchieveAwardTask:
         if minitouch.achieveaward(self.ctx):
             time.sleep(3)
             minitouch.tapbottom(self.ctx)
-        minitouch.weekaward(self.ctx)
+
+        if not setTimeOut(self.ctx, minitouch.weekaward):
+            exit(0)
+
         if minitouch.receiveallaward(self.ctx):
             time.sleep(3)
             minitouch.tapbottom(self.ctx)

@@ -1,6 +1,6 @@
 from cv2 import (imread, matchTemplate, IMREAD_GRAYSCALE, TM_CCOEFF_NORMED, minMaxLoc, imwrite, INTER_LINEAR, 
                  resize, cvtColor, COLOR_BGR2GRAY, threshold, THRESH_BINARY_INV, findContours,CHAIN_APPROX_SIMPLE,
-                 RETR_CCOMP, boundingRect, THRESH_BINARY)
+                 RETR_CCOMP, boundingRect, THRESH_BINARY, INTER_AREA)
 from numpy import where
 from kiloncore import context, adb, consts
 # from cnocr import CnOcr
@@ -30,7 +30,8 @@ def whereTemplate(ctx: context.Context,template_path):
     w, h = template.shape[::-1]
     sw, sh = src.shape[::-1]
     # 进行模板匹配
-    res = matchTemplate(src, template, TM_CCOEFF_NORMED)
+    resized_src = resize(src, (1280, 720), interpolation=INTER_AREA)
+    res = matchTemplate(resized_src, template, TM_CCOEFF_NORMED)
 
     # 找到最佳匹配位置
     min_val, max_val, min_loc, max_loc = minMaxLoc(res)
@@ -38,13 +39,10 @@ def whereTemplate(ctx: context.Context,template_path):
     if max_val < 0.8:
         return -1, -1
     
-    # 设置阈值
-    threshold = 0.8
-    
     # 找到匹配的位置
     # loc = where(res >= threshold)
-    loc = max_loc
-    
+    # loc = max_loc
+    loc = (int(max_loc[0] * ctx.wr), int(max_loc[1] * ctx.hr))
     # if len(loc[0]) == 0 or len(loc[1]) == 0:
     #     return -1, -1
     x = loc[0] + 1/2 * w
@@ -148,7 +146,7 @@ def imageTailor(ctx: context.Context,template_path):
     # 读取模板和图像
     template = imread(template_path, IMREAD_GRAYSCALE)
     image = imread(consts.screencap, IMREAD_GRAYSCALE)
-
+    image = resize(image, (1280, 720))
     # 模板匹配
     result = matchTemplate(image, template, TM_CCOEFF_NORMED)
 
