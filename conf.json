@@ -17,10 +17,10 @@
         "time": 2
     },
     "Sleepwalk": {
-        "check": false
+        "check": true
     },
     "AchieveAward": {
-        "check": true,
+        "check": false,
         "dayAndWeek": true,
         "mail": true,
         "hhJukebox": true

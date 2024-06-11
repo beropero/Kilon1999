@@ -198,6 +198,86 @@ def collectlcze(ctx: context.Context):
 def collectwc(ctx: context.Context):
     pass
 
+@tap(consts.sleepwalk)
+def sleepwalk(ctx: context.Context):
+    pass
+
+@tap(consts.dsChallenge)
+def dsChallenge(ctx: context.Context):
+    pass
+
+@tap(consts.dsTeam)
+def dsTeam(ctx: context.Context):
+    pass
+
+@tap(consts.dsTeam1)
+def dsTeam1(ctx: context.Context):
+    pass
+
+@tap(consts.dsTeam2)
+def dsTeam2(ctx: context.Context):
+    pass
+
+@tap(consts.dsAction)
+def dsAction(ctx: context.Context):
+    pass
+
+@tap(consts.ds1)
+def ds1(ctx: context.Context):
+    pass
+
+@tap(consts.ds1Finish)
+def ds1Finish(ctx: context.Context):
+    pass
+
+@tap(consts.ds2)
+def ds2(ctx: context.Context):
+    pass
+
+@tap(consts.ds3)
+def ds3(ctx: context.Context):
+    pass
+
+@tap(consts.ds4)
+def ds4(ctx: context.Context):
+    pass
+
+@tap(consts.ds5)
+def ds5(ctx: context.Context):
+    pass
+
+@tap(consts.ds6)
+def ds6(ctx: context.Context):
+    pass
+
+@tap(consts.ds2Enemy1)
+def ds2Enemy1(ctx: context.Context):
+    pass
+
+@tap(consts.ds2Enemy2)
+def ds2Enemy2(ctx: context.Context):
+    pass
+
+@tap(consts.ds3Enemy1)
+def ds3Enemy1(ctx: context.Context):
+    pass
+
+@tap(consts.ds3Enemy2)
+def ds3Enemy2(ctx: context.Context):
+    pass
+
+@tap(consts.dsSpecial)
+def dsSpecial(ctx: context.Context):
+    pass
+
+@tap(consts.auto)
+def auto(ctx: context.Context):
+    pass
+
+@tap(consts.speedx1)
+def speedx1(ctx: context.Context):
+    pass
+
 def tapbottom(ctx: context.Context):
     w, h = utils.getWandH(ctx)
     ctx.device.tap([(1/6 * h, 1/2 * w)])

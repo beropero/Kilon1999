@@ -31,16 +31,24 @@ def whereTemplate(ctx: context.Context,template_path):
     sw, sh = src.shape[::-1]
     # 进行模板匹配
     res = matchTemplate(src, template, TM_CCOEFF_NORMED)
+
+    # 找到最佳匹配位置
+    min_val, max_val, min_loc, max_loc = minMaxLoc(res)
+
+    if max_val < 0.8:
+        return -1, -1
     
     # 设置阈值
     threshold = 0.8
     
     # 找到匹配的位置
-    loc = where(res >= threshold)
-    if len(loc[0]) == 0 or len(loc[1]) == 0:
-        return -1, -1
-    x = loc[1][0] + 1/2 * w
-    y = loc[0][0] + 1/2 * h
+    # loc = where(res >= threshold)
+    loc = max_loc
+    
+    # if len(loc[0]) == 0 or len(loc[1]) == 0:
+    #     return -1, -1
+    x = loc[0] + 1/2 * w
+    y = loc[1] + 1/2 * h
 
     return sh - y, x
 

@@ -177,7 +177,7 @@ class VolitionalAnalysisTask(Task):
     # 进入意志解析
     def EnterVolitionalAnalysis(self):
         if not setTimeOut(self.ctx, self.EnterShow):
-            return
+            exit(0)
         minitouch.enterresource(self.ctx)
         if not minitouch.volitionAlanalysis(self.ctx):
             w, h = utils.getWandH(self.ctx)
@@ -406,13 +406,148 @@ class AchieveAwardTask:
             print(f"{getnowtimeformat()} 点唱机")
             self.Achievehhaward()
             minitouch.backHome(self.ctx)
-        
-        
-        
 
     def execute(self):
         if not self.ctx.conf['AchieveAward']['check']:
             return
         print(f"{getnowtimeformat()} 奖励领取")
+        self.process()
+        time.sleep(5)
+
+# 人工梦游任务
+class SleepWalkTask(Task):
+    def __init__(self, ctx: context.Context):
+        self.ctx = ctx
+        self.Check = self.ctx.conf['Sleepwalk']['check']
+    
+    # 进入show
+    def EnterShow(self, ctx):
+        if not minitouch.enterShow(self.ctx):
+            minitouch.backHome(self.ctx)
+            return False
+        return True
+    
+    # 进入深眠
+    def enterdepthsleep(self,ctx):
+        if not minitouch.dsChallenge(self.ctx):
+            # TODO 周领取
+            return False
+        return True
+    
+    # 一次战斗
+    def battle(self, func):
+        if not setTimeOut(self.ctx, minitouch.dsTeam):
+            exit(0)
+        
+        func(self.ctx)
+        minitouch.tapbottom(self.ctx)
+        minitouch.dsAction(self.ctx)
+
+        for i in range (0, 10):
+            minitouch.dsSpecial(self.ctx)
+
+        # minitouch.auto(self.ctx)
+        # minitouch.speedx1(self.ctx)
+
+        if not minitouch.setTimeOut(self.ctx, minitouch.actionSuccess, 600):
+            exit(0)
+
+        minitouch.actionSuccess(self.ctx)
+    
+    # 第一关
+    def ds1(self):
+        if not setTimeOut(self.ctx, minitouch.ds1):
+            exit(0)
+        time.sleep(2)
+
+        time.sleep(8)
+        minitouch.back(self.ctx)
+    
+    def ds2(self):
+        if not setTimeOut(self.ctx, minitouch.ds2):
+            exit(0)
+        time.sleep(2)
+
+        if minitouch.ds2Enemy1(self.ctx):
+            self.battle(minitouch.dsTeam1)
+
+        if minitouch.ds2Enemy2(self.ctx):
+            self.battle(minitouch.dsTeam2)
+
+        time.sleep(8)
+        minitouch.back(self.ctx)
+
+    def ds3(self):
+        if not setTimeOut(self.ctx, minitouch.ds3):
+            exit(0)
+        time.sleep(2)
+
+        if minitouch.ds2Enemy1(self.ctx):
+            self.battle(minitouch.dsTeam1)
+
+        if minitouch.ds3Enemy2(self.ctx):
+            self.battle(minitouch.dsTeam2)
+
+        time.sleep(8)
+        minitouch.back(self.ctx)
+
+    def ds4(self):
+        if not setTimeOut(self.ctx, minitouch.ds4):
+            exit(0)
+        time.sleep(2)
+
+        if minitouch.ds2Enemy1(self.ctx):
+            self.battle(minitouch.dsTeam1)
+
+        if minitouch.ds3Enemy2(self.ctx):
+            self.battle(minitouch.dsTeam2)
+
+        time.sleep(8)
+        minitouch.back(self.ctx)
+
+    def ds5(self):
+        if not setTimeOut(self.ctx, minitouch.ds5):
+            exit(0)
+        time.sleep(2)
+
+        if minitouch.ds2Enemy1(self.ctx):
+            print(1)
+            self.battle(minitouch.dsTeam1)
+
+        if minitouch.ds3Enemy2(self.ctx):
+            print(2)
+            self.battle(minitouch.dsTeam2)
+
+        time.sleep(8)
+        minitouch.back(self.ctx)
+
+    
+    def process(self):
+        if not setTimeOut(self.ctx, self.EnterShow):
+            exit(0)
+        minitouch.sleepwalk(self.ctx)
+        if not setTimeOut(self.ctx, self.enterdepthsleep):
+            exit(0)
+        # 滑动至最左
+        time.sleep(2)
+        w, h = utils.getWandH(self.ctx)
+        for i in range(0, 3):
+            minitouch.swipe(self.ctx, 1/2*h, 1/3*w, 1/2*h, 2/3*w)
+            time.sleep(1)
+
+        self.ds1()
+        self.ds2()
+        self.ds3()
+        time.sleep(3)
+        for i in range(0, 3):
+            minitouch.swipe(self.ctx, 1/2*h, 2/3*w, 1/2*h, 1/3*w)
+            time.sleep(1)
+        self.ds4()
+        self.ds5()
+
+    def execute(self):
+        if not self.Check:
+            return
+        print(f"{getnowtimeformat()} 人工梦游")
         self.process()
         time.sleep(5)
