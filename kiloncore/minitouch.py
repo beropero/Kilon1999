@@ -250,6 +250,14 @@ def ds5(ctx: context.Context):
 def ds6(ctx: context.Context):
     pass
 
+@tap(consts.ds1Enemy1)
+def ds1Enemy1(ctx: context.Context):
+    pass
+
+@tap(consts.ds1Enemy2)
+def ds1Enemy2(ctx: context.Context):
+    pass
+
 @tap(consts.ds2Enemy1)
 def ds2Enemy1(ctx: context.Context):
     pass
@@ -266,6 +274,30 @@ def ds3Enemy1(ctx: context.Context):
 def ds3Enemy2(ctx: context.Context):
     pass
 
+@tap(consts.ds4Enemy1)
+def ds4Enemy1(ctx: context.Context):
+    pass
+
+@tap(consts.ds4Enemy2)
+def ds4Enemy2(ctx: context.Context):
+    pass
+
+@tap(consts.ds5Enemy1)
+def ds5Enemy1(ctx: context.Context):
+    pass
+
+@tap(consts.ds5Enemy2)
+def ds5Enemy2(ctx: context.Context):
+    pass
+
+@tap(consts.ds6Enemy1)
+def ds6Enemy1(ctx: context.Context):
+    pass
+
+@tap(consts.ds6Enemy2)
+def ds6Enemy2(ctx: context.Context):
+    pass
+
 @tap(consts.dsSpecial)
 def dsSpecial(ctx: context.Context):
     pass
@@ -276,6 +308,22 @@ def auto(ctx: context.Context):
 
 @tap(consts.speedx1)
 def speedx1(ctx: context.Context):
+    pass
+
+@tap(consts.dsReset1)
+def dsReset1(ctx: context.Context):
+    pass
+
+@tap(consts.dsReset2)
+def dsReset2(ctx: context.Context):
+    pass
+
+@tap(consts.dsReset3)
+def dsReset3(ctx: context.Context):
+    pass
+
+@tap(consts.dsReset4)
+def dsReset4(ctx: context.Context):
     pass
 
 def tapbottom(ctx: context.Context):

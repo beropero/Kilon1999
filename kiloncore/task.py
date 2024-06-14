@@ -463,74 +463,36 @@ class SleepWalkTask(Task):
             exit(0)
 
         minitouch.actionSuccess(self.ctx)
-    
-    # 第一关
-    def ds1(self):
-        if not setTimeOut(self.ctx, minitouch.ds1):
+
+    # 重置梦境
+    def reset(self):
+        if not setTimeOut(self.ctx, minitouch.dsReset1):
             exit(0)
-        time.sleep(2)
+        time.sleep(1)
+        minitouch.dsReset2(self.ctx)
+        minitouch.dsReset3(self.ctx)
+        if minitouch.dsReset4(self.ctx):
+            return
+        if not setTimeOut(self.ctx, minitouch.back):
+            exit(0)
+        
+    # 深眠单片段流程
+    def ds(self, i: int):
+        if not setTimeOut(self.ctx, getattr(minitouch, f"ds{i}")):
+            exit(0)
+        
+        self.reset()
+
+        if not setTimeOut(self.ctx, getattr(minitouch, f"ds{i}Enemy1")):
+            exit(0)
+        self.battle(minitouch.dsTeam1)
+
+        if not setTimeOut(self.ctx, getattr(minitouch, f"ds{i}Enemy2")):
+            exit(0)
+        self.battle(minitouch.dsTeam2)
 
         time.sleep(8)
         minitouch.back(self.ctx)
-    
-    def ds2(self):
-        if not setTimeOut(self.ctx, minitouch.ds2):
-            exit(0)
-        time.sleep(2)
-
-        if minitouch.ds2Enemy1(self.ctx):
-            self.battle(minitouch.dsTeam1)
-
-        if minitouch.ds2Enemy2(self.ctx):
-            self.battle(minitouch.dsTeam2)
-
-        time.sleep(8)
-        minitouch.back(self.ctx)
-
-    def ds3(self):
-        if not setTimeOut(self.ctx, minitouch.ds3):
-            exit(0)
-        time.sleep(2)
-
-        if minitouch.ds2Enemy1(self.ctx):
-            self.battle(minitouch.dsTeam1)
-
-        if minitouch.ds3Enemy2(self.ctx):
-            self.battle(minitouch.dsTeam2)
-
-        time.sleep(8)
-        minitouch.back(self.ctx)
-
-    def ds4(self):
-        if not setTimeOut(self.ctx, minitouch.ds4):
-            exit(0)
-        time.sleep(2)
-
-        if minitouch.ds2Enemy1(self.ctx):
-            self.battle(minitouch.dsTeam1)
-
-        if minitouch.ds3Enemy2(self.ctx):
-            self.battle(minitouch.dsTeam2)
-
-        time.sleep(8)
-        minitouch.back(self.ctx)
-
-    def ds5(self):
-        if not setTimeOut(self.ctx, minitouch.ds5):
-            exit(0)
-        time.sleep(2)
-
-        if minitouch.ds2Enemy1(self.ctx):
-            print(1)
-            self.battle(minitouch.dsTeam1)
-
-        if minitouch.ds3Enemy2(self.ctx):
-            print(2)
-            self.battle(minitouch.dsTeam2)
-
-        time.sleep(8)
-        minitouch.back(self.ctx)
-
     
     def process(self):
         if not setTimeOut(self.ctx, self.EnterShow):
@@ -544,16 +506,14 @@ class SleepWalkTask(Task):
         for i in range(0, 3):
             minitouch.swipe(self.ctx, 1/2*h, 1/3*w, 1/2*h, 2/3*w)
             time.sleep(1)
-
-        self.ds1()
-        self.ds2()
-        self.ds3()
-        time.sleep(3)
-        for i in range(0, 3):
-            minitouch.swipe(self.ctx, 1/2*h, 2/3*w, 1/2*h, 1/3*w)
-            time.sleep(1)
-        self.ds4()
-        self.ds5()
+            
+        for i in range (1, 7):
+            if i == 4:
+                # 滑动至最右
+                for i in range(0, 3):
+                    minitouch.swipe(self.ctx, 1/2*h, 2/3*w, 1/2*h, 1/3*w)
+                    time.sleep(1)
+            self.ds(i)
 
     def execute(self):
         if not self.Check:
