@@ -230,6 +230,11 @@ def dsTeam2(ctx: context.Context):
 def dsAction(ctx: context.Context):
     pass
 
+@tap(consts.dsFail)
+def dsFail(ctx: context.Context):
+    pass
+
+
 @tap(consts.ds1)
 def ds1(ctx: context.Context):
     pass

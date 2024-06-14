@@ -53,6 +53,7 @@ collectlcze = "resource/template/collectlcze.png"
 collectwc = "resource/template/collectwc.png"
 # 深眠
 sleepwalkweekaward = "resource/template/sleepwalkweekaward.png"
+dsFail = "resource/template/ds_fail.png"
 dsField = "resource/template/ds_field.png"
 sleepwalk = "resource/template/sleepwalk.png"
 dsChallenge = "resource/template/ds_challenge.png"

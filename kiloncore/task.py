@@ -417,7 +417,15 @@ class SleepWalkTask(Task):
     def __init__(self, ctx: context.Context):
         self.ctx = ctx
         self.Check = self.ctx.conf['Sleepwalk']['check']
-    
+    # 战斗结果
+    def battleresult(self, ctx):
+        if minitouch.actionSuccess(self.ctx):
+            self.battleres = True
+            return True
+        if minitouch.dsFail(self.ctx):
+            self.battleres = False
+            return True
+        return False
     # 进入show
     def EnterShow(self, ctx):
         if not minitouch.enterShow(self.ctx):
@@ -459,11 +467,8 @@ class SleepWalkTask(Task):
                     exit(0)
                 minitouch.speedx1(self.ctx)
 
-        if not minitouch.setTimeOut(self.ctx, minitouch.actionSuccess, 600):
+        if not minitouch.setTimeOut(self.ctx, self.battleresult, 600):
             exit(0)
-
-        minitouch.actionSuccess(self.ctx)
-
     # 重置梦境
     def reset(self):
         if not setTimeOut(self.ctx, minitouch.dsReset1):
@@ -485,13 +490,17 @@ class SleepWalkTask(Task):
         if not setTimeOut(self.ctx, getattr(minitouch, f"ds{i}Enemy1")):
             exit(0)
         self.battle(minitouch.dsTeam1)
+        if not self.battleres: return False
 
         if not setTimeOut(self.ctx, getattr(minitouch, f"ds{i}Enemy2")):
             exit(0)
         self.battle(minitouch.dsTeam2)
+        if not self.battleres: return False
 
         if not setTimeOut(self.ctx, self.backdsfield):
             exit(0)
+        
+        return True
     def process(self):
         levelname = ["深眠片段·Ⅰ","深眠片段·Ⅱ","深眠片段·Ⅲ","深眠片段·Ⅳ","深眠片段·Ⅴ","深眠片段·Ⅵ"]
         if not setTimeOut(self.ctx, self.EnterShow):
@@ -515,7 +524,9 @@ class SleepWalkTask(Task):
 
             print(f"{getnowtimeformat()} {levelname[i-1]}")
 
-            self.ds(i)
+            if not self.ds(i): 
+                print(f"{getnowtimeformat()} 战斗失败")
+                return
 
     def execute(self):
         if not self.Check:
