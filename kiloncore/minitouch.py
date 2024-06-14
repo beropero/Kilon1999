@@ -202,8 +202,16 @@ def collectwc(ctx: context.Context):
 def sleepwalk(ctx: context.Context):
     pass
 
+@tap(consts.sleepwalkweekaward)
+def sleepwalkweekaward(ctx: context.Context):
+    pass
+
 @tap(consts.dsChallenge)
 def dsChallenge(ctx: context.Context):
+    pass
+
+@tap(consts.dsField)
+def dsField(ctx: context.Context):
     pass
 
 @tap(consts.dsTeam)

@@ -72,7 +72,7 @@ class CellActiveTask(Task):
 
         flag, self.lastactive = utils.residualActivity(self.ctx)
         if flag:
-            print(f"{getnowtimeformat()} 剩余活性：{self.lastactive}")
+            print(f"{getnowtimeformat()} 剩余活性:{self.lastactive}")
 
             if self.lastactive < self.oneactive:
                 print(f"{getnowtimeformat()} 活性不足")
@@ -99,7 +99,7 @@ class CellActiveTask(Task):
                     self.recurrence()
                     self.lastactive -= 4 * self.oneactive
                     print(f"{getnowtimeformat()} 4级复现 x {i+1}")
-                    print(f"{getnowtimeformat()} 剩余活性：{self.lastactive}")
+                    print(f"{getnowtimeformat()} 剩余活性:{self.lastactive}")
 
                 time.sleep(4)
 
@@ -110,7 +110,7 @@ class CellActiveTask(Task):
                 self.recurrence()
                 self.lastactive -= surplustime * self.oneactive
                 print(f"{getnowtimeformat()} {surplustime}级复现 x 1")
-                print(f"{getnowtimeformat()} 剩余活性：{self.lastactive}")
+                print(f"{getnowtimeformat()} 剩余活性:{self.lastactive}")
 
                 time.sleep(4) 
 
@@ -118,7 +118,7 @@ class CellActiveTask(Task):
     def onetimehowmach(self):
         flag, active = utils.howMachActive(self.ctx)
         if flag and active!=0:
-            print(f"{getnowtimeformat()} 关卡活性：{active}")
+            print(f"{getnowtimeformat()} 关卡活性:{active}")
         return active
 
     def process(self):
@@ -212,7 +212,7 @@ class VolitionalAnalysisTask(Task):
         if x != -1:
             flag, depth = utils.residualAnalysis(self.ctx)
             if flag:
-                print(f"{getnowtimeformat()} 深度解析：{depth}/2")
+                print(f"{getnowtimeformat()} 深度解析:{depth}/2")
                 if self.Time >= 2:
                     self.Time -= depth
                     rt = depth if self.Time < depth else self.Time
@@ -237,7 +237,7 @@ class VolitionalAnalysisTask(Task):
 
         flag, self.lastactive = utils.residualActivity(self.ctx)
         if flag:
-            print(f"{getnowtimeformat()} 剩余活性：{self.lastactive}")
+            print(f"{getnowtimeformat()} 剩余活性:{self.lastactive}")
 
             if self.lastactive < self.oneactive:
                 print(f"{getnowtimeformat()} 活性不足")
@@ -264,7 +264,7 @@ class VolitionalAnalysisTask(Task):
                     self.recurrence()
                     self.lastactive -= 4 * self.oneactive
                     print(f"{getnowtimeformat()} 4级复现 x {i+1}")
-                    print(f"{getnowtimeformat()} 剩余活性：{self.lastactive}")
+                    print(f"{getnowtimeformat()} 剩余活性:{self.lastactive}")
 
                 time.sleep(4)
 
@@ -275,7 +275,7 @@ class VolitionalAnalysisTask(Task):
                 self.recurrence()
                 self.lastactive -= surplustime * self.oneactive
                 print(f"{getnowtimeformat()} {surplustime}级复现 x 1")
-                print(f"{getnowtimeformat()} 剩余活性：{self.lastactive}")
+                print(f"{getnowtimeformat()} 剩余活性:{self.lastactive}")
 
                 time.sleep(4)
 
@@ -283,7 +283,7 @@ class VolitionalAnalysisTask(Task):
     def onetimehowmach(self):
         flag, active = utils.howMachActive(self.ctx)
         if flag and active != 0:
-            print(f"{getnowtimeformat()} 关卡活性：{active}")
+            print(f"{getnowtimeformat()} 关卡活性:{active}")
         return active
 
     def process(self):
@@ -310,18 +310,6 @@ class WastelandTask(Task):
             minitouch.backHome(self.ctx)
             return False
         return True
-
-    # ## 收取智利齿儿
-    # def CollecWastelandtZlce(self):
-    #     for i in range(0, 3):
-    #         minitouch.wastelandZlce(self.ctx)
-    #     minitouch.back(self.ctx)
-    
-    # ## 收取微尘
-    # def CollecWastelandtWc(self):
-    #     for i in range(0, 3):
-    #         minitouch.wastelandWc(self.ctx)    
-    #     minitouch.back(self.ctx)
 
     def process(self):
         if not setTimeOut(self.ctx, self.EnterWasteland):
@@ -437,27 +425,39 @@ class SleepWalkTask(Task):
             return False
         return True
     
-    # 进入深眠
+    # 进入深眠域
     def enterdepthsleep(self,ctx):
-        if not minitouch.dsChallenge(self.ctx):
-            # TODO 周领取
+        if not minitouch.dsField(self.ctx):
+            minitouch.sleepwalkweekaward(self.ctx)
+            minitouch.dsChallenge(self.ctx)
+            return False
+        return True
+    # 选择队伍
+    def selectteam(self, ctx):
+        if not self.teamfunc(self.ctx):
+            minitouch.dsTeam(self.ctx)
             return False
         return True
     
+    # 返回深眠域
+    def backdsfield(self, ctx):
+        if not minitouch.dsField(self.ctx):
+            minitouch.back(self.ctx)
+            return False
+        return True
     # 一次战斗
     def battle(self, func):
-        if not setTimeOut(self.ctx, minitouch.dsTeam):
+        self.teamfunc = func
+        if not setTimeOut(self.ctx, self.selectteam):
             exit(0)
-        
-        func(self.ctx)
-        minitouch.tapbottom(self.ctx)
+
         minitouch.dsAction(self.ctx)
 
         for i in range (0, 10):
-            minitouch.dsSpecial(self.ctx)
-
-        # minitouch.auto(self.ctx)
-        # minitouch.speedx1(self.ctx)
+            if minitouch.dsSpecial(self.ctx):
+                if not setTimeOut(self.ctx, minitouch.auto):
+                    exit(0)
+                minitouch.speedx1(self.ctx)
 
         if not minitouch.setTimeOut(self.ctx, minitouch.actionSuccess, 600):
             exit(0)
@@ -475,7 +475,6 @@ class SleepWalkTask(Task):
             return
         if not setTimeOut(self.ctx, minitouch.back):
             exit(0)
-        
     # 深眠单片段流程
     def ds(self, i: int):
         if not setTimeOut(self.ctx, getattr(minitouch, f"ds{i}")):
@@ -491,10 +490,10 @@ class SleepWalkTask(Task):
             exit(0)
         self.battle(minitouch.dsTeam2)
 
-        time.sleep(8)
-        minitouch.back(self.ctx)
-    
+        if not setTimeOut(self.ctx, self.backdsfield):
+            exit(0)
     def process(self):
+        levelname = ["深眠片段·Ⅰ","深眠片段·Ⅱ","深眠片段·Ⅲ","深眠片段·Ⅳ","深眠片段·Ⅴ","深眠片段·Ⅵ"]
         if not setTimeOut(self.ctx, self.EnterShow):
             exit(0)
         minitouch.sleepwalk(self.ctx)
@@ -506,13 +505,16 @@ class SleepWalkTask(Task):
         for i in range(0, 3):
             minitouch.swipe(self.ctx, 1/2*h, 1/3*w, 1/2*h, 2/3*w)
             time.sleep(1)
-            
+
         for i in range (1, 7):
             if i == 4:
                 # 滑动至最右
-                for i in range(0, 3):
+                for j in range(0, 3):
                     minitouch.swipe(self.ctx, 1/2*h, 2/3*w, 1/2*h, 1/3*w)
                     time.sleep(1)
+
+            print(f"{getnowtimeformat()} {levelname[i-1]}")
+
             self.ds(i)
 
     def execute(self):

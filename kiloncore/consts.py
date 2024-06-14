@@ -52,6 +52,8 @@ oldhallposition = "resource/template/oldhallposition.png"
 collectlcze = "resource/template/collectlcze.png"
 collectwc = "resource/template/collectwc.png"
 # 深眠
+sleepwalkweekaward = "resource/template/sleepwalkweekaward.png"
+dsField = "resource/template/ds_field.png"
 sleepwalk = "resource/template/sleepwalk.png"
 dsChallenge = "resource/template/ds_challenge.png"
 dsTeam = "resource/template/ds_team.png"
