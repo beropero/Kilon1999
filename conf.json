@@ -4,7 +4,7 @@
         "addr": "127.0.0.1:16384"
     },
     "CellActive": {
-        "check": false,
+        "check": true,
         "levelselect": 1,
         "time": 4,
         "nextlevels": 0
@@ -13,11 +13,11 @@
         "check": false
     },
     "VolitionalAnalysis": {
-        "check": false,
+        "check": true,
         "time": 2
     },
     "Sleepwalk": {
-        "check": true
+        "check": false
     },
     "AchieveAward": {
         "check": false,

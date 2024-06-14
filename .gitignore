@@ -8,6 +8,7 @@ screencap/*.png
 *.so
 
 Pipfile
+Pipfile.lock
 out/
 # Distribution / packaging
 .Python

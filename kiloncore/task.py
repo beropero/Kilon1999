@@ -310,7 +310,18 @@ class WastelandTask(Task):
             minitouch.backHome(self.ctx)
             return False
         return True
-
+    
+    def dialog(self):
+        if not minitouch.wastelandDialog1(self.ctx):
+            return
+        while minitouch.wastelandDialog1(self.ctx):
+            pass
+        time.sleep(2)
+        while minitouch.wastelandDialog2(self.ctx):
+            pass
+        time.sleep(2)
+        while minitouch.wastelandDialog1(self.ctx):
+            pass
     def process(self):
         if not setTimeOut(self.ctx, self.EnterWasteland):
             exit(0)
@@ -328,6 +339,9 @@ class WastelandTask(Task):
 
         ## 收取信赖
         minitouch.wastelandTrust(self.ctx)
+        time.sleep(2)
+        # 触发信赖对话框
+        self.dialog()
 
         ## 返回主页
         minitouch.backHome(self.ctx)
@@ -421,9 +435,11 @@ class SleepWalkTask(Task):
     def battleresult(self, ctx):
         if minitouch.actionSuccess(self.ctx):
             self.battleres = True
+            minitouch.actionSuccess(self.ctx)
             return True
         if minitouch.dsFail(self.ctx):
             self.battleres = False
+            minitouch.dsFail(self.ctx)
             return True
         return False
     # 进入show

@@ -114,6 +114,14 @@ def selectx4(ctx: context.Context):
 def wasteland(ctx: context.Context):
     pass
 
+@tap(consts.wastelandDialog1)
+def wastelandDialog1(ctx: context.Context):
+    pass
+
+@tap(consts.wastelandDialog2)
+def wastelandDialog2(ctx: context.Context):
+    pass
+
 @tap(consts.wastelandHome)
 def wastelandHome(ctx: context.Context):
     pass
