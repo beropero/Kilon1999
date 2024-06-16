@@ -5,15 +5,15 @@
     },
     "CellActive": {
         "check": true,
-        "levelselect": 1,
-        "time": 4,
-        "nextlevels": 0
+        "levelselect": 2,
+        "time": 15,
+        "nextlevels": 1
     },
     "Wasteland": {
         "check": false
     },
     "VolitionalAnalysis": {
-        "check": true,
+        "check": false,
         "time": 2
     },
     "Sleepwalk": {

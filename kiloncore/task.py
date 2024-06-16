@@ -54,7 +54,8 @@ class CellActiveTask(Task):
         if not setTimeOut(self.ctx, minitouch.actionSuccess, 300):
             exit(0)
         time.sleep(1)
-        minitouch.actionSuccess(self.ctx)
+        while minitouch.actionSuccess(self.ctx):
+            minitouch.actionSuccess(self.ctx)
     
     # 活性复现
     def cellactivetime(self):
@@ -199,7 +200,8 @@ class VolitionalAnalysisTask(Task):
         if not setTimeOut(self.ctx, minitouch.actionSuccess, 300):
             exit(0)
         time.sleep(1)
-        minitouch.actionSuccess(self.ctx)
+        while minitouch.actionSuccess(self.ctx):
+            minitouch.actionSuccess(self.ctx)
 
     # 深度解析
     def depthtime(self):
@@ -452,6 +454,7 @@ class SleepWalkTask(Task):
     # 进入深眠域
     def enterdepthsleep(self,ctx):
         if not minitouch.dsField(self.ctx):
+            minitouch.dsStartchallenge(self.ctx)
             minitouch.sleepwalkweekaward(self.ctx)
             minitouch.dsChallenge(self.ctx)
             return False
@@ -521,7 +524,8 @@ class SleepWalkTask(Task):
         levelname = ["深眠片段·Ⅰ","深眠片段·Ⅱ","深眠片段·Ⅲ","深眠片段·Ⅳ","深眠片段·Ⅴ","深眠片段·Ⅵ"]
         if not setTimeOut(self.ctx, self.EnterShow):
             exit(0)
-        minitouch.sleepwalk(self.ctx)
+        if not setTimeOut(self.ctx, minitouch.sleepwalk):
+            exit(0)
         if not setTimeOut(self.ctx, self.enterdepthsleep):
             exit(0)
         # 滑动至最左

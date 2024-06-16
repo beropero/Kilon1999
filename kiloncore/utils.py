@@ -13,7 +13,7 @@ def getWandH(ctx: context.Context):
     return sw, sh
 
 # 图片模板寻址
-def whereTemplate(ctx: context.Context,template_path):
+def whereTemplate(ctx: context.Context,template_path,threshold=0.8):
     adb.screencap(ctx)
 
     src = imread(consts.screencap, IMREAD_GRAYSCALE)
@@ -36,7 +36,7 @@ def whereTemplate(ctx: context.Context,template_path):
     # 找到最佳匹配位置
     min_val, max_val, min_loc, max_loc = minMaxLoc(res)
 
-    if max_val < 0.8:
+    if max_val < threshold:
         return -1, -1
     
     # 找到匹配的位置
@@ -126,7 +126,7 @@ def digitalRecognition(image, type):
                 best_match = i
 
         # 将轮廓信息和识别的数字存储到列表中
-        if best_score >0.7:
+        if best_score >0.75:
             contour_info.append((x, y, w, h, best_match))
 
     # 根据轮廓的x坐标对列表进行排序
@@ -172,7 +172,9 @@ def imageTailor(ctx: context.Context,template_path):
 def residualActivity(ctx: context.Context):
     flag, image = imageTailor(ctx, consts.cellActive)
     if not flag:
-        return flag, None
+        flag, image = imageTailor(ctx, consts.specialcellactive)
+        if not flag:
+            return flag, None
     return True, digitalRecognition(image, "white")
 
 # 读取深度解析次数

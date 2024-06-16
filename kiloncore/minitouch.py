@@ -54,6 +54,10 @@ def actionSuccess(ctx: context.Context):
 def outcellActivity(ctx: context.Context):
     ctx.device.tap([(0, 0)])
 
+@tap(consts.specialcellactive)
+def specialcellactive(ctx: context.Context):
+    ctx.device.tap([(0, 0)])
+
 @tap(consts.showResource)
 def enterresource(ctx: context.Context):
     pass
@@ -242,6 +246,9 @@ def dsAction(ctx: context.Context):
 def dsFail(ctx: context.Context):
     pass
 
+@tap(consts.dsStartchallenge)
+def dsStartchallenge(ctx: context.Context):
+    pass
 
 @tap(consts.ds1)
 def ds1(ctx: context.Context):
